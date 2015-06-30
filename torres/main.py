@@ -4,4 +4,4 @@ from torres import app
 
 @app.route('/')
 def index():
-    return open('templates/index.html').read()
+    return open('torres/templates/index.html').read()
