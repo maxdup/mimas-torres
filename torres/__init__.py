@@ -8,8 +8,9 @@ from sms import sms
 
 app = Flask(__name__)
 app.register_blueprint(main)
-app.config.from_object('settings')
+app.register_blueprint(sms)
 
 app.url_map.strict_slashes = True
 
-app.run(port=5000)
+if __name__ == "__main__":
+    app.run()
