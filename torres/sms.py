@@ -13,8 +13,6 @@ def receive_sms():
     if not(notifier_email and notifier_password):
        return
 
-    print(request.data)
-
     msg = MIMEMultipart()
     msg['Subject'] = "text"
     msg['From'] = notifier_email
@@ -31,15 +29,20 @@ td"><html xmlns="http://www.w3.org/1999/xhtml"><body><h1>'''+str(request.data)+'
     server.login(notifier_email, notifier_password)
     server.sendmail(notifier_email, notified_email, msg.as_string())
     server.quit()
+
     return ('', 204)
 
-@sms.route('/message', methods=['post'])
-def send_sms(commande_info):
+@sms.route('/message', methods=['POST', 'GET'])
+def send_sms():
     if not (sender_sms and ACCOUNT_SID and AUTH_TOKEN):
-        return
+        return ('', 403)
+
+    content = request.get_json()
 
     client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
     client.messages.create(
-        to=commande_info['details']['notify'],
+        to=int(content['number']),
         from_=sender_sms,
-        body='hello',)
+        body=content['message'],)
+
+    return ('', 204)

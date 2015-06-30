@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.register_blueprint(main)
 app.register_blueprint(sms)
 
+app.debug = True
+
 app.url_map.strict_slashes = True
 
 if __name__ == "__main__":
