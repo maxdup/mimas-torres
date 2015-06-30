@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Blueprint
 
-from torres import app
+main = Blueprint('main', __name__, template_folder='templates')
 
-@app.route('/')
+@main.route('/')
 def index():
-    return open('torres/templates/index.html').read()
+    return open('templates/index.html').read()

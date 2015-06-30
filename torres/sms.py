@@ -1,13 +1,14 @@
-from flask import Flask, request
+from flask import Blueprint, request
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from twilio.rest import TwilioRestClient
-from torres import app
-from torres.config import *
+from config import *
 
-@app.route('/notify', methods=['POST', 'GET'])
+sms = Blueprint('sms', __name__, template_folder='templates')
+
+@sms.route('/notify', methods=['POST', 'GET'])
 def receive_sms():
     if not(notifier_email and notifier_password):
        return
@@ -32,7 +33,7 @@ td"><html xmlns="http://www.w3.org/1999/xhtml"><body><h1>'''+str(request.data)+'
     server.quit()
     return ('', 204)
 
-@app.route('/message', methods=['post'])
+@sms.route('/message', methods=['post'])
 def send_sms(commande_info):
     if not (sender_sms and ACCOUNT_SID and AUTH_TOKEN):
         return
