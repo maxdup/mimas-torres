@@ -18,9 +18,11 @@ def receive_sms():
     msg['From'] = notifier_email
     msg['To'] = notified_email
 
+    message = str(request.form)
+
     html = '''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w\
 3.org/TR/xhtml1/DTD/xhtml1-transitional.d\
-td"><html xmlns="http://www.w3.org/1999/xhtml"><body><h1>'''+str(request.data)+'''</h1></body></html>'''
+td"><html xmlns="http://www.w3.org/1999/xhtml"><body><h1>''' + message + '''</h1></body></html>'''
 
     msg.attach(MIMEText(html, 'html'))
 
