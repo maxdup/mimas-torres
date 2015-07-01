@@ -1,6 +1,7 @@
 div {
     font-family: Tahoma, Geneva, sans-serif;
 }
+
 container {
     width: 1000px;
 }
@@ -8,22 +9,24 @@ container {
 .tower {
     display: inline-block;
     border-radius: 8px;
-    width: 150px;
+    width: 144px;
     height: 400px;
-    background: #828;
-    margin-right: 20px;
+    background: #888;
+    margin-right: 18px;
 
-    &.test{
-        background: #288;
-    }
+    &:last-child { margin-right: 0; }
+    &:hover { text-decoration: none; }
+    &.test { background: #848; }
+    &.sms { background: #4f4; }
+    &.blog { background: #f44; }
 
     .title {
         color: white;
         weight: bold;
         font-size: 120px;
-        text-indent: -90px;
+        text-indent: -70px;
         line-height: 80px;
-        
+
         -webkit-transform-origin: 0% 100%;
         -moz-transform-origin: 0% 100%;
         -ms-transform-origin: 0% 100%;
@@ -35,6 +38,5 @@ container {
         -ms-transform: rotate(90deg);
         -o-transform: rotate(90deg);
         transform: rotate(90deg);
-
     }
 }
