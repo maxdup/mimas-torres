@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Skylar Torres</title>
   <link href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/main.css" rel="stylesheet">
 
   <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="static/bower_components/underscore/underscore-min.js"></script>
@@ -21,16 +22,16 @@
 </head>
 
 <body ng-controller="RootController">
-
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Skylar Torres</a>
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Skylar Torres</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <div ng-view></div>
-
+    <div ng-view></div>
+  </div>
 </body>
 </html>

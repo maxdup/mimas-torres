@@ -22,7 +22,7 @@ module.exports = function(grunt){
           expand: true,
           cwd: 'torres/static/less/',
           src: ['*.less', '!.*.less'],
-          dest: 'torres/app/css/',
+          dest: 'torres/static/css/',
           ext: '.css'
         }]
       }
