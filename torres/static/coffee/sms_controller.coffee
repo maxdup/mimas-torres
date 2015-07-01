@@ -7,11 +7,32 @@ angular.module('skylar.smsControllers', [])
 .controller 'SmsController',
 ($scope, $location, $http, $route, $rootScope) ->
 
+  $scope.testsms = {
+    'From': '+12323445678',
+    'To': '+12323445678',
+
+    'ToCountry': 'CA',
+    'ToState': 'QC',
+    'ToCity': 'Montr\xe9al',
+
+    'FromZip': '',
+    'FromCity': 'Montr\xe9al',
+    'FromState': 'QC',
+    'FromCountry': 'CA',
+
+    'Body': 'okayss',
+
+    'SmsStatus': 'received',
+    }
+
   $scope.notify = ->
     console.log('patate')
-    $http.post('/notify', "this is just a test")
-      .success (data) ->
-        console.log(data)
+    $http({
+      method: 'POST',
+      url: '/notify',
+      data: $.param($scope.testsms),
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    })
 
   $scope.message = ->
     request = {

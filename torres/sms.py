@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -10,6 +10,8 @@ sms = Blueprint('sms', __name__, template_folder='templates')
 
 @sms.route('/notify', methods=['POST', 'GET'])
 def receive_sms():
+
+    print('request!')
     if not(notifier_email and notifier_password and notified_email):
        return
 
@@ -17,11 +19,10 @@ def receive_sms():
     msg['Subject'] = "text message"
     msg['From'] = notifier_email
     msg['To'] = notified_email
+    message = {'from':request.form['From'],
+               'body':request.form['Body']}
 
-    message = str(request.form)
-
-    html = render_template('email_sms.html', from=request.form['from'], body=request.body['body'])
-
+    html = render_template('email_sms.html', msg=message)
     msg.attach(MIMEText(html, 'html'))
 
     server = smtplib.SMTP('smtp.gmail.com:587')
