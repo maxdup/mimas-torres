@@ -8,6 +8,10 @@ angular.module('skylar.smsControllers', [])
 ($scope, $location, $http, $route, $rootScope) ->
 
   $scope.messages = []
+  $http.get('/contact')
+    .success (data) ->
+      $scope.contacts = data
+      console.log(data)
 
   $scope.getsms = ->
     $http.get('/sms')
@@ -51,3 +55,8 @@ angular.module('skylar.smsControllers', [])
     $http.post('/message', request)
       .success (data) ->
         console.log('sent', request)
+
+  $scope.add_contact = ->
+    $http.post('/contact', {'name':$scope.cname, 'number':$scope.cnumber})
+      .success (data) ->
+        console.log(data)

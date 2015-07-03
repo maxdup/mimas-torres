@@ -4,6 +4,10 @@
   <div class="col-md-4">
     <div class="panel">
       <h3>Contacts</h3>
+      <div ng-repeat="contact in contacts">
+        <span class="label label-default">{{ contact.name }}</span>
+      </div>
+
       <button class="btn" ng-click="getsms()" >get sms</button>
 
     </div>

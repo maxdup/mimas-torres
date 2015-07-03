@@ -13,13 +13,40 @@ from bson import json_util
 sms = Blueprint('sms', __name__, template_folder='templates')
 
 @sms.route('/sms', methods=['GET', 'POST'])
-def sms_crud():
+def sms_rest():
+
     if request.method == 'GET':
-        message=[]
-        smss = g.db['sms'].find()
-        for s in smss:
-            message.append(s)
-        return json.dumps(message, default=json_util.default)
+        messages = []
+        query = g.db['sms'].find()
+        for message in query:
+            messages.append(message)
+        return json.dumps(messages, default=json_util.default)
+
+    return json.dumps({})
+
+@sms.route('/contact', methods=['GET', 'POST'])
+def contact_rest():
+
+    if request.method == 'GET':
+        contacts = []
+        query = g.db['contact'].find()
+        for contact in query:
+            contacts.append(contact)
+        return json.dumps(contacts, default=json_util.default)
+
+    if request.method == 'POST':
+        contact = request.json
+        if not contact['number'] and contact['name']:
+            abort(400)
+
+        contact['number'] = int(contact['number'])
+
+        if 10000000000 < contact['number'] < 100000000000:
+            g.db['contact'].save(contact)
+            return json.dumps(contact, default=json_util.default)
+        else:
+            abort(400)
+
     return json.dumps({})
 
 @sms.route('/notify', methods=['POST', 'GET'])
