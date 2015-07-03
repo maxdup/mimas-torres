@@ -7,6 +7,16 @@ angular.module('skylar.smsControllers', [])
 .controller 'SmsController',
 ($scope, $location, $http, $route, $rootScope) ->
 
+  $scope.messages = []
+
+  $scope.getsms = ->
+    $http.get('/sms')
+      .success (data) ->
+        console.log(data)
+        $scope.messages = data
+      .error (data) ->
+        console.log(data)
+
   $scope.testsms = {
     'From': '+12323445678',
     'To': '+12323445678',

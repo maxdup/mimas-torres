@@ -6,7 +6,21 @@ from email.mime.text import MIMEText
 from twilio.rest import TwilioRestClient
 from config import *
 
+import json
+
+from bson import json_util
+
 sms = Blueprint('sms', __name__, template_folder='templates')
+
+@sms.route('/sms', methods=['GET', 'POST'])
+def sms_crud():
+    if request.method == 'GET':
+        message=[]
+        smss = g.db['sms'].find()
+        for s in smss:
+            message.append(s)
+        return json.dumps(message, default=json_util.default)
+    return json.dumps({})
 
 @sms.route('/notify', methods=['POST', 'GET'])
 def receive_sms():

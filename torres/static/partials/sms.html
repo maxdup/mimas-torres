@@ -1,0 +1,32 @@
+<h1>Sms</h1>
+<div class="sms">
+
+  <div class="col-md-4">
+    <div class="panel">
+      <h3>Contacts</h3>
+      <button class="btn" ng-click="getsms()" >get sms</button>
+
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="panel">
+
+      <h3>Messages</h3>
+      <div class="messages" ng-repeat="mess in messages">
+        <span class="label label-default">{{mess.body}}</span>
+      </div>
+
+      <div class="reply" ng-show="messages.length">
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Send</button>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
