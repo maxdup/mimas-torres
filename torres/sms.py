@@ -24,7 +24,7 @@ def sms_rest():
 
     return json.dumps({})
 
-@sms.route('/contact', methods=['GET', 'POST'])
+@sms.route('/contact', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def contact_rest():
 
     if request.method == 'GET':
@@ -46,6 +46,16 @@ def contact_rest():
             return json.dumps(contact, default=json_util.default)
         else:
             abort(400)
+
+    if request.method == 'PUT':
+        id = json_util.object_hook(request.json.pop('_id'))
+        g.db['contact'].update({'_id': id}, {'$set': request.json})
+        return ('', 204)
+
+    if request.method == 'DELETE':
+        id = json_util.object_hook(request.json.pop('_id'))
+        g.db['contact'].remove({'_id': id})
+        return ('', 204)
 
     return json.dumps({})
 

@@ -57,6 +57,24 @@ angular.module('skylar.smsControllers', [])
         console.log('sent', request)
 
   $scope.add_contact = ->
-    $http.post('/contact', {'name':$scope.cname, 'number':$scope.cnumber})
+    $http.post('/contact', {'name':$scope.newname, 'number':$scope.newnmb})
       .success (data) ->
-        console.log(data)
+        $scope.contacts.push(data)
+        $scope.add = null
+
+  $scope.edit_contact = (contact) ->
+    contact.backup = _.clone(contact)
+
+  $scope.cancel_contact = (contact) ->
+    _.extend(contact, contact.backup)
+    delete contact['backup']
+
+  $scope.save_contact = (contact) ->
+    $http.put('/contact', _.omit(contact, 'backup'))
+      .success (data) ->
+        delete contact['backup']
+
+  $scope.del_contact = (contact) ->
+    $http.delete('/contact', _.omit(contact, 'backup'))
+      .success (data) ->
+        $scope.contacts = _.without($scope.contacts, contact)
