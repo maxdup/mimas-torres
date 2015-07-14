@@ -7,6 +7,7 @@ from twilio.rest import TwilioRestClient
 from config import *
 
 import json
+from bson.objectid import ObjectId
 
 from bson import json_util
 
@@ -24,11 +25,19 @@ def sms_rest():
 
     return json.dumps({})
 
-@sms.route('/contact', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def contact_rest():
+@sms.route('/contact', methods=['GET', 'POST'])
+@sms.route('/contact/<_id>', methods=['GET', 'PUT', 'DELETE'])
+def contact_rest(_id=None):
+
+    if _id:
+        _id = ObjectId(_id)
 
     if request.method == 'GET':
         contacts = []
+        if _id:
+            contact = g.db['contact'].find()
+            return json.dumps(contacts, default=json_util.default)
+
         query = g.db['contact'].find()
         for contact in query:
             contacts.append(contact)
@@ -48,13 +57,15 @@ def contact_rest():
             abort(400)
 
     if request.method == 'PUT':
-        id = json_util.object_hook(request.json.pop('_id'))
-        g.db['contact'].update({'_id': id}, {'$set': request.json})
-        return ('', 204)
+        contact = request.json
+        if '_id' in contact:
+            del contact['_id']
+        contact['number'] = int(contact['number'])
+        contact = g.db['contact'].update({'_id': _id}, {'$set': contact})
+        return json.dumps(contact, default=json_util.default)
 
     if request.method == 'DELETE':
-        id = json_util.object_hook(request.json.pop('_id'))
-        g.db['contact'].remove({'_id': id})
+        g.db['contact'].remove({'_id': _id})
         return ('', 204)
 
     return json.dumps({})

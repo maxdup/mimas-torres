@@ -1,4 +1,4 @@
-angular.module('skylarApp', ['ngRoute', 'ngCookies', 'ngResource', 'skylar.smsControllers'])
+angular.module('skylarApp', ['ngRoute', 'ngCookies', 'ngResource', 'skylar.smsControllers', 'skylar.services'])
 .config ($routeProvider, $httpProvider) ->
   $routeProvider
   .when '/home',

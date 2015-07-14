@@ -5,13 +5,11 @@ angular.module('skylar.smsControllers', [])
   console.log('okay!')
 
 .controller 'SmsController',
-($scope, $location, $http, $route, $rootScope) ->
+($scope, $location, $http, $route, $rootScope, Contact) ->
 
   $scope.messages = []
-  $http.get('/contact')
-    .success (data) ->
-      $scope.contacts = data
-      console.log(data)
+  Contact.query().$promise.then (value) ->
+    $scope.contacts = value
 
   $scope.getsms = ->
     $http.get('/sms')
@@ -40,7 +38,6 @@ angular.module('skylar.smsControllers', [])
     }
 
   $scope.notify = ->
-    console.log('patate')
     $http({
       method: 'POST',
       url: '/notify',
@@ -56,11 +53,12 @@ angular.module('skylar.smsControllers', [])
       .success (data) ->
         console.log('sent', request)
 
+
   $scope.add_contact = ->
-    $http.post('/contact', {'name':$scope.newname, 'number':$scope.newnmb})
-      .success (data) ->
-        $scope.contacts.push(data)
-        $scope.add = null
+    Contact.save({name:$scope.newname, number:$scope.newnmb})
+      .$promise.then (value) ->
+        $scope.contacts.push(value)
+        $scope.add = false
 
   $scope.edit_contact = (contact) ->
     contact.backup = _.clone(contact)
@@ -70,11 +68,10 @@ angular.module('skylar.smsControllers', [])
     delete contact['backup']
 
   $scope.save_contact = (contact) ->
-    $http.put('/contact', _.omit(contact, 'backup'))
-      .success (data) ->
+    Contact.update({id:contact._id.$oid},
+      _.omit(contact, 'backup')).$promise.then (value) ->
         delete contact['backup']
 
   $scope.del_contact = (contact) ->
-    $http.delete('/contact', _.omit(contact, 'backup'))
-      .success (data) ->
-        $scope.contacts = _.without($scope.contacts, contact)
+    Contact.delete({id:contact._id.$oid}).$promise.then (value) ->
+      $scope.contacts = _.without($scope.contacts, contact)
