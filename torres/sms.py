@@ -81,6 +81,7 @@ def receive_sms():
     msg['From'] = notifier_email
     msg['To'] = notified_email
     message = {'from':request.form['From'],
+               'to':request.form['To'],
                'body':request.form['Body']}
 
     g.db['sms'].save(message)
@@ -104,9 +105,17 @@ def send_sms():
     content = request.get_json()
 
     client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+
     client.messages.create(
         to=int(content['number']),
         from_=sender_sms,
         body=content['message'],)
+
+    message = {'from': sender_sms,
+               'to': content['number'],
+               'body': content['message']}
+
+    g.db['sms'].save(message)
+
 
     return ('', 204)
