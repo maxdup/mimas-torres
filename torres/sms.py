@@ -14,6 +14,7 @@ from bson import json_util
 sms = Blueprint('sms', __name__, template_folder='templates')
 
 @sms.route('/sms', methods=['GET', 'POST'])
+@sms.route('/sms/<_id>', methods=['GET', 'PUT', 'DELETE'])
 def sms_rest():
 
     if request.method == 'GET':
@@ -22,6 +23,38 @@ def sms_rest():
         for message in query:
             messages.append(message)
         return json.dumps(messages, default=json_util.default)
+
+    elif request.method == 'POST':
+        if not (sender_sms and ACCOUNT_SID and AUTH_TOKEN):
+            return ('', 403)
+
+        content = request.get_json()
+
+        client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+
+        client.messages.create(
+            to=int(content['number']),
+            from_=sender_sms,
+            body=content['message'],)
+
+        message = {'from': sender_sms,
+                   'to': content['number'],
+                   'body': content['message']}
+
+        g.db['sms'].save(message)
+        return json.dumps(message, default=json_util.default)
+
+    elif request.method == 'PUT':
+        #this is a one off to update the database.
+        smss = g.db['sms'].find()
+        for sms in smss:
+            g.db['sms'].update({'_id': sms['_id']},
+                               {'$set':{'to':sender_sms}})
+
+    elif request.method == 'DELETE':
+        g.db['sms'].remove({'_id': _id})
+        return ('', 204)
+
 
     return json.dumps({})
 
@@ -43,7 +76,7 @@ def contact_rest(_id=None):
             contacts.append(contact)
         return json.dumps(contacts, default=json_util.default)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         contact = request.json
         if not contact['number'] and contact['name']:
             abort(400)
@@ -56,7 +89,7 @@ def contact_rest(_id=None):
         else:
             abort(400)
 
-    if request.method == 'PUT':
+    elif request.method == 'PUT':
         contact = request.json
         if '_id' in contact:
             del contact['_id']
@@ -64,7 +97,7 @@ def contact_rest(_id=None):
         contact = g.db['contact'].update({'_id': _id}, {'$set': contact})
         return json.dumps(contact, default=json_util.default)
 
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         g.db['contact'].remove({'_id': _id})
         return ('', 204)
 
@@ -97,7 +130,7 @@ def receive_sms():
 
     return ('', 204)
 
-@sms.route('/message', methods=['POST', 'GET'])
+@sms.route('/message', methods=['POST'])
 def send_sms():
     if not (sender_sms and ACCOUNT_SID and AUTH_TOKEN):
         return ('', 403)
@@ -116,6 +149,4 @@ def send_sms():
                'body': content['message']}
 
     g.db['sms'].save(message)
-
-
     return ('', 204)
