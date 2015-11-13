@@ -1,4 +1,4 @@
-angular.module('skylar.services', ['ngResource'])
+angular.module('mimas.services', ['ngResource'])
 .factory 'Contact', ($resource) ->
   $resource('contact/:id',
     { id: '@_id'}, {update:{method:'PUT'}})

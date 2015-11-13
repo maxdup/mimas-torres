@@ -1,5 +1,5 @@
 {
-  "name": "restorant",
+  "name": "Mimas Torres",
   "version": "0.0.0",
   "description": "log210",
   "main": "index.js",
@@ -10,10 +10,10 @@
   "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxdup/log210"
+    "url": "https://github.com/maxdup/mimas-torres"
   },
   "bugs": {
-    "url": "https://github.com/maxdup/log210/issues"
+    "url": "https://github.com/maxdup/mimas-torres/issues"
   },
   "dependencies": {
     "grunt": "~0.4.5",

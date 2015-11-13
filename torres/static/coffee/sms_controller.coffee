@@ -1,4 +1,4 @@
-angular.module('skylar.smsControllers', [])
+angular.module('mimas.smsControllers', [])
 
 .controller 'RootController',
 ($scope, $location, $http, $route, $rootScope) ->

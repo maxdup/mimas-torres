@@ -1,4 +1,4 @@
-angular.module('skylar.testController', [])
+angular.module('mimas.testController', [])
 
 .controller 'TestController',
 ($scope, $location, $http, $route, $rootScope, Contact, Sms) ->
