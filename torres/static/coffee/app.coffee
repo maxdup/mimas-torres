@@ -1,4 +1,4 @@
-angular.module('MimasApp', ['ngRoute', 'ngCookies', 'ngResource', 'mimas.smsControllers', 'mimas.testController', 'mimas.services'])
+angular.module('mimasApp', ['ngRoute', 'ngCookies', 'ngResource', 'mimas.smsControllers', 'mimas.testController', 'mimas.services'])
 .config ($routeProvider, $httpProvider) ->
   $routeProvider
   .when '/home',
