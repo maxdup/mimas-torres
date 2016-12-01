@@ -3,12 +3,12 @@ angular.module('mimasApp', ['ngRoute', 'ngCookies', 'ngResource', 'mimas.smsCont
   $routeProvider
   .when '/home',
     controller: 'RootController'
-    templateUrl: 'static/partials/home.html'
+    templateUrl: '../static/partials/home.html'
   .when '/sms',
     controller: 'SmsController'
-    templateUrl: 'static/partials/sms.html'
+    templateUrl: '../static/partials/sms.html'
   .when '/test',
     controller: 'TestController'
-    templateUrl: 'static/partials/test.html'
+    templateUrl: '../static/partials/test.html'
   .otherwise
     redirectTo: '/home'

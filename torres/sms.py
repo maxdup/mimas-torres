@@ -13,8 +13,8 @@ from bson import json_util
 
 sms = Blueprint('sms', __name__, template_folder='templates')
 
-@sms.route('/sms', methods=['GET', 'POST'])
-@sms.route('/sms/<_id>', methods=['GET', 'PUT', 'DELETE'])
+@sms.route('/admin/sms', methods=['GET', 'POST'])
+@sms.route('/admin/sms/<_id>', methods=['GET', 'PUT', 'DELETE'])
 def sms_rest():
 
     if request.method == 'GET':
@@ -58,8 +58,8 @@ def sms_rest():
 
     return json.dumps({})
 
-@sms.route('/contact', methods=['GET', 'POST'])
-@sms.route('/contact/<_id>', methods=['GET', 'PUT', 'DELETE'])
+@sms.route('/admin/contact', methods=['GET', 'POST'])
+@sms.route('/admin/contact/<_id>', methods=['GET', 'PUT', 'DELETE'])
 def contact_rest(_id=None):
 
     if _id:
@@ -103,7 +103,7 @@ def contact_rest(_id=None):
 
     return json.dumps({})
 
-@sms.route('/notify', methods=['POST', 'GET'])
+@sms.route('/admin/notify', methods=['POST', 'GET'])
 def receive_sms():
 
     if not(notifier_email and notifier_password and notified_email):
@@ -130,7 +130,7 @@ def receive_sms():
 
     return ('', 204)
 
-@sms.route('/message', methods=['POST'])
+@sms.route('/admin/message', methods=['POST'])
 def send_sms():
     if not (sender_sms and ACCOUNT_SID and AUTH_TOKEN):
         return ('', 403)
