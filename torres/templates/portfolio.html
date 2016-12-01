@@ -24,17 +24,21 @@
   <script type="text/javascript" src="https://d1jlf623bx36qa.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
 </head>
 
-<body ng-controller="RootController">
-  <div class="container">
-    <nav class="navbar navbar-default navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#/home">Mimas Torres</a>
+<body ng-controller="RootController" style="overflow:hidden;">
+  <div id="portfolio">
+    <div class="container">
+      <div class="content">
+      <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#/home">Mimas Torres</a>
+          </div>
         </div>
+      </nav>
       </div>
-    </nav>
 
-    <div ng-view></div>
+      <div ng-view></div>
+    </div>
   </div>
 </body>
 </html>

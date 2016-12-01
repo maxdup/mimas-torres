@@ -5,7 +5,7 @@ angular.module('folio.Controllers', [])
   return
 
 .controller 'FolioController',
-($scope, $location, $http, $route, $rootScope) ->
+($scope, $location, $http, $route, $rootScope, $window) ->
   
   camera = null
   scene = null
@@ -37,10 +37,12 @@ angular.module('folio.Controllers', [])
 
     scene.add(mesh)
 
-    renderer = Detector.webgl ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer()
+    renderer = new THREE.WebGLRenderer()
+
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize( window.innerWidth, window.innerHeight )
-    document.body.appendChild( renderer.domElement )
+    tdcontainer = document.getElementById("portfolio")
+    tdcontainer.appendChild( renderer.domElement )
 
 
   $scope.animate = ->
@@ -49,9 +51,9 @@ angular.module('folio.Controllers', [])
 
 
   $scope.update = ->
-    lon += 0.00001;
+    lon += 0.03;
 
-    lat = Math.max( - 40, Math.min( 85, lat ) )
+    lat = Math.max( - 85, Math.min( 85, lat ) )
     phi = THREE.Math.degToRad( 90 - lat )
     theta = THREE.Math.degToRad( lon )
     camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta )
@@ -63,3 +65,10 @@ angular.module('folio.Controllers', [])
 
   $scope.init()
   $scope.animate()
+
+  w = angular.element($window)
+  w.bind( 'resize', ->
+    console.log("resize")
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize( window.innerWidth, window.innerHeight))
