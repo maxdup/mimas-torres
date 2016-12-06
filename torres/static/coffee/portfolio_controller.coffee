@@ -1,10 +1,6 @@
 angular.module('folio.Controllers', [])
 
 .controller 'RootController',
-($scope, $location, $http, $route, $rootScope) ->
-  return
-
-.controller 'FolioController',
 ($scope, $location, $http, $route, $rootScope, $window) ->
   
   camera = null
@@ -72,3 +68,8 @@ angular.module('folio.Controllers', [])
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize( window.innerWidth, window.innerHeight))
+
+
+.controller 'FolioController',
+($scope, $location, $http, $route, $rootScope, $window) ->
+  return

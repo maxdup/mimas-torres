@@ -8,9 +8,9 @@
 
   <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="static/bower_components/underscore/underscore-min.js"></script>
-  <script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <script src="static/bower_components/angular/angular.js"></script>
+  <script src="static/bower_components/angular-animate/angular-animate.js"></script>
   <script src="static/bower_components/angular-route/angular-route.js"></script>
   <script src="static/bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
@@ -21,23 +21,24 @@
 
   <script src="static/js/folioapp.js"></script>
   <script src="static/js/portfolio_controller.js"></script>
-  <script type="text/javascript" src="https://d1jlf623bx36qa.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
 </head>
 
 <body ng-controller="RootController" style="overflow:hidden;">
   <div id="portfolio">
-    <div class="container">
+    <div class="container-pullback" ng-show="hidden" ng-click="hidden=!hidden"></div>
+    <div class="container" ng-hide="hidden">
+      <div class="content-margin" ng-click="hidden=!hidden"></div>
       <div class="content">
-      <nav class="navbar navbar-default navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#/home">Mimas Torres</a>
+        <nav class="navbar navbar-default navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#/home">Maxime Dupuis</a>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+        <div ng-view></div>
       </div>
-
-      <div ng-view></div>
+      <div class="content-margin" ng-click="hide"></div>
     </div>
   </div>
 </body>
