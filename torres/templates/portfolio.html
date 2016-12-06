@@ -25,9 +25,9 @@
 
 <body ng-controller="RootController" style="overflow:hidden;">
   <div id="portfolio">
-    <div class="container-pullback" ng-show="hidden" ng-click="hidden=!hidden"></div>
-    <div class="container" ng-hide="hidden">
-      <div class="content-margin" ng-click="hidden=!hidden"></div>
+    <div class="container-pullback" ng-show="bgfocus" ng-click="bgfocus=!bgfocus"></div>
+    <div class="container" ng-hide="bgfocus">
+      <div class="content-margin" ng-click="bgfocus=!bgfocus"></div>
       <div class="content">
         <nav class="navbar navbar-default navbar-inverse">
           <div class="container-fluid">

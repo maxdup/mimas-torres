@@ -7,15 +7,16 @@ angular.module('folio.Controllers', [])
   scene = null
   renderer = null
   isUserInteracting = false
-  onMouseDownMouseX = 0
-  onMouseDownMouseY = 0
+  onPointerDownPointerX = 0
+  onPointerDownPointerY = 0
+  onPointerDownLon = 0
+  onPointerDownLat = 0
   lon = 0
   onMouseDownLon = 0
   lat = 0
   onMouseDownLat = 0
   phi = 0
   theta = 0
-  
 
   $scope.init = ->
     
@@ -40,6 +41,32 @@ angular.module('folio.Controllers', [])
     tdcontainer = document.getElementById("portfolio")
     tdcontainer.appendChild( renderer.domElement )
 
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false )
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false )
+    document.addEventListener( 'mouseup', onDocumentMouseUp, false )
+    document.addEventListener( 'wheel', onDocumentMouseWheel, false )
+
+  onDocumentMouseDown = (event) ->
+    if $scope.bgfocus
+      event.preventDefault()
+      isUserInteracting = true;
+      onPointerDownPointerX = event.clientX
+      onPointerDownPointerY = event.clientY
+      onPointerDownLon = lon
+      onPointerDownLat = lat
+
+  onDocumentMouseUp = (event) ->
+    isUserInteracting = false
+
+  onDocumentMouseMove = (event) ->
+    if isUserInteracting and $scope.bgfocus
+      lon = (onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
+      lat = (event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
+
+  onDocumentMouseWheel = (event) ->
+    if $scope.bgfocus
+      camera.fov = Math.max(Math.min(camera.fov + event.deltaY * 0.05, 120),60)
+      camera.updateProjectionMatrix()
 
   $scope.animate = ->
     requestAnimationFrame( $scope.animate )
