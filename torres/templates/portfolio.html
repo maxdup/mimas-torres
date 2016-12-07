@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>Maxime Dupuis</title>
-  <link href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="static/css/main.css" rel="stylesheet">
 
   <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
@@ -29,12 +28,13 @@
     <div class="container" ng-hide="bgfocus">
       <div class="content-margin" ng-click="bgfocus=!bgfocus"></div>
       <div class="content">
-        <nav class="navbar navbar-default navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#/home">Maxime Dupuis</a>
-            </div>
-          </div>
+        <nav>
+          <div class="main-decorator">Level Designer</div>
+          <a class="main" href="#/home">Maxime Dupuis</a> /
+          <a href="#/home">Commercial work</a> /
+          <a href="#/home">Hobby projects</a> /
+          <a href="#/home">++</a> /
+          <a href="#/home">Contact</a>
         </nav>
         <div ng-view></div>
       </div>
