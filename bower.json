@@ -18,6 +18,9 @@
     "bootstrap": "~3.3.5",
     "jquery": "~2.1.4",
     "angular-bootstrap": "~0.13.0",
-    "three.js": "threejs#*"
+    "three.js": "threejs#*",
+    "isotope": "^3.0.1",
+    "reset-css": "^2.2.0",
+    "jquery-mousewheel": "^3.1.13"
   }
 }

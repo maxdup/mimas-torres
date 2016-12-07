@@ -99,4 +99,13 @@ angular.module('folio.Controllers', [])
 
 .controller 'FolioController',
 ($scope, $location, $http, $route, $rootScope, $window) ->
-  return
+  $('.boxes').isotope
+    layoutMode: 'masonryHorizontal',
+    itemSelector: '.box',
+    masonryHorizontal: rowHeight: 200
+
+
+  $(".scrollbox").mousewheel((event, delta) ->
+    console.log("poop")
+    this.scrollLeft -= (delta * 30)
+    event.preventDefault())
