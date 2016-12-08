@@ -4,5 +4,8 @@ angular.module('folioApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngAnimate', '
   .when '/home',
     controller: 'FolioController'
     templateUrl: 'static/partials/folio.html'
+  .when '/commercial',
+    controller: 'FolioController'
+    templateUrl: 'static/partials/commercial.html'
   .otherwise
     redirectTo: '/home'

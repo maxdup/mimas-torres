@@ -105,7 +105,7 @@ angular.module('folio.Controllers', [])
     masonryHorizontal: rowHeight: 200
 
 
-  $(".scrollbox").mousewheel((event, delta) ->
+  $(".content").mousewheel((event, delta) ->
     console.log("poop")
     this.scrollLeft -= (delta * 30)
     event.preventDefault())

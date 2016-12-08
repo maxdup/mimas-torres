@@ -36,13 +36,15 @@
         <nav>
           <div class="main-decorator">Level Designer</div>
           <a class="main" href="#/home">Maxime Dupuis</a> /
-          <a href="#/home">Commercial work</a> /
+          <a href="#/commercial">Commercial work</a> /
           <a href="#/home">Hobby projects</a> /
           <a href="#/home">++</a> /
           <a href="#/home">Contact</a>
         </nav>
         <div class="content">
-          <div ng-view class="scrollbox"></div>
+          <div class="scrollbox">
+            <div ng-view class="scrollbox-padded"></div>
+          </div>
         </div>
       </div>
       <div class="page-margin" ng-click="bgfocus=!bgfocus"></div>

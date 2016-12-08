@@ -60,7 +60,7 @@ body {
     .page {
         position: relative;
         width: 100%;
-        height: 80%;
+        height: 85%;
         background: #202020;
         opacity: 0.95;
         transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
@@ -71,7 +71,7 @@ body {
 
     .page-margin {
         width: 100%;
-        height: 10%;
+        height: 87%;
     }
 
     .folio {
@@ -87,14 +87,16 @@ body {
         overflow: auto;
         padding-left: 100px;
     }
-    .scrollbox{
+    .scrollbox {
         height: 100%;
         overflow-x: visible;
         overflow-y: hidden;
     }
-
-    .boxes {
-
+    .scrollbox-padded {
+        position: absolute;
+        top: 0;
+        bottom: 20px;
+        overflow: hidden;
     }
 
     .boxes:after {
@@ -115,13 +117,41 @@ body {
 
     .box-w2 { width: 590px; }
     .box-h2 { height: 390px; }
+    .box-main {
+        height: 100%;
+        max-height:590px;
+        width: 440px;
+    }
 
     .blurb {
         color: white;
         padding: 35px 25px;;
         overflow: auto;
     }
-    /*
+    .quote {
+        font-size: 35px;
+        font-weight: lighter;
+        line-height: 92%;
+        color: white;
+        padding: 50px 25px;;
+        overflow: auto;
+        a {
+            font-weight:800;
+            color: white;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .date {
+            color: white;
+            float: right;
+            font-size: 20px;
+            font-style: italic;
+            padding-top: 2px;
+        }
+    }
+        /*
     @font-face {
         font-family: "Roboto";
         src: url("../font/roboto/Roboto-Thin.woff2") format("woff2"), url("../font/roboto/Roboto-Thin.woff") format("woff"), url("../font/roboto/Roboto-Thin.ttf") format("truetype");
