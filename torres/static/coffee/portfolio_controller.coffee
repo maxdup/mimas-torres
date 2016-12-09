@@ -18,6 +18,16 @@ angular.module('folio.Controllers', [])
   phi = 0
   theta = 0
 
+  routes = ["/home","/commercial","/hobby","/code","/contact"]
+  $rootScope.$on('$routeChangeStart', (event, next, current) ->
+    $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
+  )
+  $rootScope.v360 = ->
+    $rootScope.v360focus = !$rootScope.v360focus
+
+  $scope.isActive = (viewLocation) ->
+    viewLocation == $location.path()
+
   $scope.init = ->
     
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
@@ -47,7 +57,7 @@ angular.module('folio.Controllers', [])
     document.addEventListener( 'wheel', onDocumentMouseWheel, false )
 
   onDocumentMouseDown = (event) ->
-    if $scope.bgfocus
+    if $rootScope.v360focus
       event.preventDefault()
       isUserInteracting = true;
       onPointerDownPointerX = event.clientX
@@ -59,12 +69,12 @@ angular.module('folio.Controllers', [])
     isUserInteracting = false
 
   onDocumentMouseMove = (event) ->
-    if isUserInteracting and $scope.bgfocus
+    if isUserInteracting and $rootScope.v360focus
       lon = (onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
       lat = (event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
 
   onDocumentMouseWheel = (event) ->
-    if $scope.bgfocus
+    if $rootScope.v360focus
       camera.fov = Math.max(Math.min(camera.fov + event.deltaY * 0.05, 120),60)
       camera.updateProjectionMatrix()
 
@@ -99,6 +109,9 @@ angular.module('folio.Controllers', [])
 
 .controller 'FolioController',
 ($scope, $location, $http, $route, $rootScope, $window) ->
+
+  $rootScope.v360focus = false
+
   $('.boxes').isotope
     layoutMode: 'masonryHorizontal',
     itemSelector: '.box',
@@ -106,6 +119,5 @@ angular.module('folio.Controllers', [])
 
 
   $(".content").mousewheel((event, delta) ->
-    console.log("poop")
     this.scrollLeft -= (delta * 30)
     event.preventDefault())

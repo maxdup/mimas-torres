@@ -24,9 +24,12 @@ body {
         a {
             color: white;
             text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+            &.active {
+                text-decoration: underline;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
     .container {
@@ -61,21 +64,21 @@ body {
         position: relative;
         width: 100%;
         height: 85%;
-        background: #202020;
-        opacity: 0.95;
         transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    }
+    .page-background {
+        position: absolute;
+        width: 100%;
+        height: 85%;
+        background: #202020;
+        opacity: 0.90;
     }
     .page-padded {
         padding: 20px 100px;
     }
-
     .page-margin {
         width: 100%;
-        height: 87%;
-    }
-
-    .folio {
-        height: 100%;
+        height: 8%;
     }
 
     .content {
@@ -87,6 +90,8 @@ body {
         overflow: auto;
         padding-left: 100px;
     }
+
+
     .scrollbox {
         height: 100%;
         overflow-x: visible;
@@ -94,11 +99,44 @@ body {
     }
     .scrollbox-padded {
         position: absolute;
-        top: 0;
+        top:0;
+        left:100px;
+        right:0;
         bottom: 20px;
+    }
+    .view {
+        &.ng-enter {
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+            display:block;
+            overflow: hidden;
+        }
+        &.ng-leave {
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+            display:block;
+            overflow: hidden;
+        }
+        &.ng-enter {
+            left:100%;
+        }
+        &.ng-enter.ng-enter-active {
+            left:100px;
+        }
+        &.ng-leave.ng-leave-active {
+            opacity: 0;
+        }
+        &.reverse {
+            &.ng-enter {
+                left:-100%;
+            }
+            &.ng-enter.ng-enter-active {
+                left:100px;
+            }
+        }
+    }
+    .boxes {
+        height: 100%;
         overflow: hidden;
     }
-
     .boxes:after {
         content: '';
         display: block;
@@ -151,6 +189,27 @@ body {
             padding-top: 2px;
         }
     }
+    .photo {
+        img {
+            width: 100%;
+        }
+    }
+
+    .links {
+        padding: 25px;
+        a{
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+            &hover {
+                text-decoration: underline;
+            }
+        }
+        img{
+            vertical-align:middle;
+        }
+    }
+
         /*
     @font-face {
         font-family: "Roboto";
