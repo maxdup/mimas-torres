@@ -1,14 +1,19 @@
 <div class="folio boxes">
   <div class="box box-main">
     <div class="blurb">
-      <h1>Vanguard</h1>
+      <img src="static/images/vanguard/vanguard.png"></img>
       Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.
     </div>
   </div>
-
-  <div class="box" ng-click="v360()">360</div>
+  <div class="box">3D Viewer</div>
   <div class="box box-w2 box-h2">
-    gallery
+    <div id="slides_control">
+      <carousel >
+        <slide ng-repeat="slide in vanguard_imgs" active="slide.active">
+          <img ng-src="{{slide.image}}">
+        </slide>
+      </carousel>
+    </div>
   </div>
   <div class="box box-w2">
     <div class="quote">
@@ -16,8 +21,7 @@
       <div class="date">(17/12/2015)</div>
     </div>
   </div>
-  <div class="box">
-    3D
+  <div class="box v360" ng-click="v360(1)">
+    <img align="center" src="static/images/icons-360.png"></img>
   </div>
-
 </div>

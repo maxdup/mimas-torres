@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <title>Maxime Dupuis</title>
   <link href="static/bower_components/reset-css/reset.css" rel="stylesheet">
+  <link href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="static/css/main.css" rel="stylesheet">
+
 
   <script src="static/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="static/bower_components/jquery-mousewheel/jquery.mousewheel.min.js"></script>
-  <script src="static/bower_components/underscore/underscore-min.js"></script>
+  <!--<script src="static/bower_components/underscore/underscore-min.js"></script>-->
 
   <script src="static/bower_components/angular/angular.js"></script>
   <script src="static/bower_components/angular-animate/angular-animate.js"></script>
@@ -29,9 +31,10 @@
 
 <body ng-controller="RootController" style="overflow:hidden;">
   <div id="portfolio">
-    <div class="container-pullback" ng-show="$root.v360focus" ng-click="$root.v360()"></div>
-    <div class="container" ng-hide="$root.v360focus">
-      <div class="page-margin" ng-click="$root.v360()"></div>
+    <div class="container-pullback" ng-show="v360focus" ng-click="v360()"></div>
+    <div id="curtain" class="container-curtain" ng-hide="show"></div>
+    <div class="container" ng-hide="v360focus">
+      <div class="page-margin" ng-click="v360()"></div>
       <div class="page-background"></div>
       <div class="page">
         <nav>
@@ -48,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="page-margin" ng-click="$root.v360()"></div>
+      <div class="page-margin" ng-click="v360()"></div>
     </div>
   </div>
 </body>

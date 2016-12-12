@@ -1,8 +1,20 @@
 <div class="folio boxes">
   <div class="box box-main">
     <div class="blurb">
-      <h1>Occult</h1>
+      <img src="static/images/occult/occult.png"></img>
       Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.    </div>
+  </div>
+  <div class="box v360" ng-click="change360(1)">
+    <img align="center" src="static/images/icons-360.png"></img>
+  </div>
+  <div class="box box-w2 box-h2">
+    <div id="slides_control">
+      <carousel >
+        <slide ng-repeat="slide in occult_imgs" active="slide.active">
+          <img ng-src="{{slide.image}}">
+        </slide>
+      </carousel>
+    </div>
   </div>
   <div class="box box-w2">
     <div class="quote">
@@ -12,38 +24,48 @@
       <div class="date">(2015, April)</div>
     </div>
   </div>
-  <div class="box" ng-click="v360()">360</div>
-  <div class="box">
-    3D
-  </div>
-  <div class="box box-w2 box-h2">
-    Gallery
-  </div>
+  <div class="box">3D viewer</div>
 
   <div class="box box-separator"></div>
 
   <div class="box box-main">
     <div class="blurb">
-      <h1>Hadal</h1>
+      <img src="static/images/hadal/hadal.png"></img>
       Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.
     </div>
   </div>
   <div class="box box-w2 box-h2">
-    gallery
+    <div id="slides_control">
+      <carousel >
+        <slide ng-repeat="slide in hadal_imgs" active="slide.active">
+          <img ng-src="{{slide.image}}">
+        </slide>
+      </carousel>
+    </div>
   </div>
-  <div class="box" ng-click="v360()">360</div>
-  <div class="box">3D</div>
+  <div class="box v360" ng-click="change360(2)">
+    <img align="center" src="static/images/icons-360.png"></img>
+  </div>
+  <div class="box">3D Viewer</div>
 
   <div class="box box-separator"></div>
 
   <div class="box box-main">
     <div class="blurb">
-      <h1>Effigy</h1>
+      <img src="static/images/effigy/effigy.png"></img>
       Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.
     </div>
   </div>
   <div class="box box-w2 box-h2">
-    Gallery
+    <div id="slides_control">
+      <carousel >
+        <slide ng-repeat="slide in effigy_imgs" active="slide.active">
+          <img ng-src="{{slide.image}}">
+        </slide>
+      </carousel>
+    </div>
   </div>
-  <div class="box" ng-click="v360()">360</div>
+  <div class="box v360" ng-click="change360(0)">
+    <img align="center" src="static/images/icons-360.png"></img>
+  </div>
 </div>

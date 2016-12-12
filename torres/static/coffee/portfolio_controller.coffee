@@ -1,11 +1,13 @@
-angular.module('folio.Controllers', [])
+angular.module('folio.Controllers', ['ui.bootstrap'])
 
 .controller 'RootController',
-($scope, $location, $http, $route, $rootScope, $window) ->
+($scope, $location, $http, $route, $rootScope, $window, $timeout) ->
   
   camera = null
   scene = null
   renderer = null
+  mesh = null
+  material = null
   isUserInteracting = false
   onPointerDownPointerX = 0
   onPointerDownPointerY = 0
@@ -18,12 +20,35 @@ angular.module('folio.Controllers', [])
   phi = 0
   theta = 0
 
+  currbgid = 0
+
+  $scope.show = true
+
+  scenes = ['static/images/vanguard/cp_vanguard360.jpg',
+    'static/images/vanguard/cp_vanguard360alt.jpg',
+    'static/images/vanguard/cp_vanguard360alt2.jpg',
+    ]
+
+  $scope.$on('changebg', (event, bgid) ->
+    if (currbgid != bgid)
+      newmap = THREE.ImageUtils.loadTexture(scenes[bgid]);
+      $scope.show = false
+      $timeout( ->
+        material.map = newmap
+        $scope.show = true
+        currbgid = bgid
+      , 300);
+      $scope.v360()
+  )
+
+  $scope.v360 = ->
+    $scope.v360focus = !$scope.v360focus
+
   routes = ["/home","/commercial","/hobby","/code","/contact"]
   $rootScope.$on('$routeChangeStart', (event, next, current) ->
     $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
+    $scope.v360focus = false
   )
-  $rootScope.v360 = ->
-    $rootScope.v360focus = !$rootScope.v360focus
 
   $scope.isActive = (viewLocation) ->
     viewLocation == $location.path()
@@ -39,7 +64,7 @@ angular.module('folio.Controllers', [])
     geometry = new THREE.SphereGeometry(500,60,40)
     geometry.scale(-1, 1, 1)
     material = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load('static/images/vanguard360.jpg')} )
+    map: new THREE.TextureLoader().load(scenes[0])} )
     mesh = new THREE.Mesh(geometry, material)
 
     scene.add(mesh)
@@ -57,7 +82,7 @@ angular.module('folio.Controllers', [])
     document.addEventListener( 'wheel', onDocumentMouseWheel, false )
 
   onDocumentMouseDown = (event) ->
-    if $rootScope.v360focus
+    if $scope.v360focus
       event.preventDefault()
       isUserInteracting = true;
       onPointerDownPointerX = event.clientX
@@ -69,12 +94,12 @@ angular.module('folio.Controllers', [])
     isUserInteracting = false
 
   onDocumentMouseMove = (event) ->
-    if isUserInteracting and $rootScope.v360focus
+    if isUserInteracting and $scope.v360focus
       lon = (onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
       lat = (event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
 
   onDocumentMouseWheel = (event) ->
-    if $rootScope.v360focus
+    if $scope.v360focus
       camera.fov = Math.max(Math.min(camera.fov + event.deltaY * 0.05, 120),60)
       camera.updateProjectionMatrix()
 
@@ -106,11 +131,40 @@ angular.module('folio.Controllers', [])
     camera.updateProjectionMatrix()
     renderer.setSize( window.innerWidth, window.innerHeight))
 
-
 .controller 'FolioController',
 ($scope, $location, $http, $route, $rootScope, $window) ->
 
-  $rootScope.v360focus = false
+  $scope.change360 = (bgid) ->
+    $rootScope.$broadcast('changebg', bgid);
+
+  $scope.vanguard_imgs = [
+    { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
+    { image: 'static/images/vanguard/cp_vanguard_rc61.jpg'},
+    { image: 'static/images/vanguard/cp_vanguard_rc62.jpg'},
+    { image: 'static/images/vanguard/cp_vanguard_rc63.jpg'},
+    { image: 'static/images/vanguard/cp_vanguard_rc64.jpg'},
+    ]
+  $scope.hadal_imgs = [
+    { image: 'static/images/hadal/cp_hadal_b130.jpg'},
+    { image: 'static/images/hadal/cp_hadal_b131.jpg'},
+    { image: 'static/images/hadal/cp_hadal_b132.jpg'},
+    { image: 'static/images/hadal/cp_hadal_b133.jpg'},
+    { image: 'static/images/hadal/cp_hadal_b134.jpg'},
+    ]
+  $scope.occult_imgs = [
+    { image: 'static/images/occult/koth_occult_rc40.jpg'},
+    { image: 'static/images/occult/koth_occult_rc41.jpg'},
+    { image: 'static/images/occult/koth_occult_rc42.jpg'},
+    { image: 'static/images/occult/koth_occult_rc43.jpg'},
+    { image: 'static/images/occult/koth_occult_rc44.jpg'},
+    ]
+  $scope.effigy_imgs = [
+    { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
+    { image: 'static/images/effigy/pl_effigy_rc21.jpg'},
+    { image: 'static/images/effigy/pl_effigy_rc22.jpg'},
+    { image: 'static/images/effigy/pl_effigy_rc23.jpg'},
+    { image: 'static/images/effigy/pl_effigy_rc24.jpg'},
+    ]
 
   $('.boxes').isotope
     layoutMode: 'masonryHorizontal',
