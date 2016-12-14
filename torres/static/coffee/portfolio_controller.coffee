@@ -1,4 +1,4 @@
-angular.module('folio.Controllers', ['ui.bootstrap'])
+angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
 .controller 'RootController',
 ($scope, $location, $http, $route, $rootScope, $window, $timeout) ->
@@ -132,7 +132,21 @@ angular.module('folio.Controllers', ['ui.bootstrap'])
     renderer.setSize( window.innerWidth, window.innerHeight))
 
 .controller 'FolioController',
-($scope, $location, $http, $route, $rootScope, $window) ->
+($scope, $location, $http, $route, $rootScope, $window, ModalService) ->
+
+  $scope.viewmodal = (id=0)->
+    console.log('viewmodal')
+    ModalService.showModal({
+      templateUrl: "static/partials/modal_template.html",
+      controller: "ModalController"
+    }).then((modal) ->
+      boxcarousel = document.getElementsByClassName("box-carousel")[id]
+      carousel = document.getElementsByClassName("slides_control")[id]
+      overlay = document.getElementById("overlay")
+      overlay.appendChild(carousel)
+      modal.close.then((result) ->
+        boxcarousel.appendChild(carousel)
+      ))
 
   $scope.change360 = (bgid) ->
     $rootScope.$broadcast('changebg', bgid);
@@ -175,3 +189,7 @@ angular.module('folio.Controllers', ['ui.bootstrap'])
   $(".content").mousewheel((event, delta) ->
     this.scrollLeft -= (delta * 30)
     event.preventDefault())
+
+.controller('ModalController', ['$scope', 'close', ($scope, close) ->
+    $scope.close = close
+  ])

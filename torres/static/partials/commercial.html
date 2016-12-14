@@ -6,10 +6,11 @@
     </div>
   </div>
   <div class="box">3D Viewer</div>
-  <div class="box box-w2 box-h2">
-    <div id="slides_control">
+  <div id="carousel" class="box box-carousel">
+    <div class="slides_control" id="slides_control">
       <carousel >
         <slide ng-repeat="slide in vanguard_imgs" active="slide.active">
+          <div class="modalable" ng-click="viewmodal()"></div>
           <img ng-src="{{slide.image}}">
         </slide>
       </carousel>

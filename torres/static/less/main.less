@@ -163,6 +163,21 @@ body {
         margin-right: 10px;
         margin-bottom: 10px;
         overflow: hidden;
+        .title {
+            position: absolute;
+            height: 100%;
+            width: auto;
+        }
+        .bg{
+            position: absolute;
+            left: 0;
+            top:-65px;
+            width: 100%;
+        }
+    }
+    .box-welcome {
+        width: 440px;
+        height: 390px;
     }
 
     .box-w2 { width: 590px; }
@@ -177,16 +192,24 @@ body {
         width: 40px;
         opacity: 0;
     }
+    .box-carousel {
+        .box-w2;
+        .box-h2;
+    }
 
     .blurb {
         color: white;
-        padding: 35px 25px;;
+        padding: 35px 25px;
         overflow: auto;
         img {
             margin-top: -75px;
             height: auto;
             width: 100%;
         }
+    }
+    .contact {
+        color: white;
+        padding: 25px;
     }
     .quote {
         font-size: 35px;
@@ -241,23 +264,31 @@ body {
             vertical-align:middle;
         }
     }
-    #slides_control {
+    .slides_control {
         height: 100%;
     }
     .carousel {
+        height: 100%;
+
         .item {
             height: 100%;
+            overflow: hidden;
         }
         .carousel-inner {
             height: 100%;
         }
-        height: 100%;
+        .modalable {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
         img {
             height: 100%;
+            max-width: 200%;
             width: auto;
+            margin-left: -50px;
         }
     }
-
         /*
     @font-face {
         font-family: "Roboto";
@@ -341,6 +372,45 @@ body {
         font-weight: 500; }
     i {
         font-style: italic;
+    }
+}
+
+#custom-modal {
+    #overlay {
+        position: absolute;
+        width: 94%;
+        height: 90%;
+        top: 5%;
+        left: 3%;
+        background: black;
+        z-index: 16;
+    }
+    .fade {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: black;
+        opacity: 0.5;
+        z-index: 15;
+    }
+    #slides_control {
+        height: 100%;
+    }
+    .carousel {
+        height: 100%;
+    }
+    .carousel-inner{
+        height: 100%;
+        img{
+            height:100%;
+            margin: auto;
+            max-width: 200%;
+        }
+        .item {
+            overflow: hidden;
+        }
     }
 }
 

@@ -21,6 +21,7 @@
     "three.js": "threejs#*",
     "isotope": "^3.0.1",
     "reset-css": "^2.2.0",
-    "jquery-mousewheel": "^3.1.13"
+    "jquery-mousewheel": "^3.1.13",
+    "angular-modal-service": "^0.10.1"
   }
 }
