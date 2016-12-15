@@ -1,0 +1,29 @@
+<div class="box box-main">
+  <div class="blurb">
+    <img src="static/images/occult/occult.png"></img>
+    Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.    </div>
+</div>
+<div class="box v360" ng-click="change360(1)">
+  <img align="center" src="static/images/icons-360.png"></img>
+</div>
+<div class="box box-carousel">
+  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal()"></span>
+  <div class="slides_control" id="slides_control">
+    <carousel >
+      <slide ng-repeat="slide in occult_imgs" active="slide.active">
+        <div class="modalable" ng-click="viewmodal(0)"></div>
+        <img ng-src="{{slide.image}}">
+      </slide>
+    </carousel>
+  </div>
+</div>
+<div class="box box-w2">
+  <div class="quote">
+    <a href="pcgamer.jpg" target="_blank">
+      <i>"Great TF2 community map"</i> <br />-PCGamer
+    </a>
+    <div class="date">(2015, April)</div>
+  </div>
+</div>
+<div class="box">3D viewer</div>
+<div class="box box-separator"/>

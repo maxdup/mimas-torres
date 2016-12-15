@@ -7,7 +7,7 @@ app.config ($routeProvider, $httpProvider) ->
   .when '/commercial',
     controller: 'FolioController'
     templateUrl: 'static/partials/commercial.html'
-  .when '/hobby',
+  .when '/hobby/:map?',
     controller: 'FolioController'
     templateUrl: 'static/partials/hobby.html'
   .when '/code',

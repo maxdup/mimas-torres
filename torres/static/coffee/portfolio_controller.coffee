@@ -44,7 +44,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   $scope.v360 = ->
     $scope.v360focus = !$scope.v360focus
 
-  routes = ["/home","/commercial","/hobby","/code","/contact"]
+  routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
   $rootScope.$on('$routeChangeStart', (event, next, current) ->
     $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
     $scope.v360focus = false
@@ -132,10 +132,9 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     renderer.setSize( window.innerWidth, window.innerHeight))
 
 .controller 'FolioController',
-($scope, $location, $http, $route, $rootScope, $window, ModalService) ->
+($scope, $location, $http, $route, $routeParams, $rootScope, $window, ModalService) ->
 
   $scope.viewmodal = (id=0)->
-    console.log('viewmodal')
     ModalService.showModal({
       templateUrl: "static/partials/modal_template.html",
       controller: "ModalController"
@@ -150,6 +149,18 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
   $scope.change360 = (bgid) ->
     $rootScope.$broadcast('changebg', bgid);
+
+  mapnames = [
+    "occult"
+    "hadal"
+    "effigy"]
+  $scope.maps = [
+    "static/partials/occult.html"
+    "static/partials/hadal.html"
+    "static/partials/effigy.html"]
+
+  map = $scope.maps.splice(mapnames.indexOf($routeParams.map),1)[0]
+  $scope.maps.unshift(map)
 
   $scope.vanguard_imgs = [
     { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
@@ -180,11 +191,13 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     { image: 'static/images/effigy/pl_effigy_rc24.jpg'},
     ]
 
-  $('.boxes').isotope
-    layoutMode: 'masonryHorizontal',
-    itemSelector: '.box',
-    masonryHorizontal: rowHeight: 200
-
+  $scope.layout = ->
+    $('.boxes').isotope
+      layoutMode: 'masonryHorizontal',
+      itemSelector: '.box',
+      masonryHorizontal: rowHeight: 200
+    return
+  $scope.layout()
 
   $(".content").mousewheel((event, delta) ->
     this.scrollLeft -= (delta * 30)

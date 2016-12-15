@@ -1,0 +1,29 @@
+<div class="box box-main">
+  <div class="blurb">
+    <img src="static/images/vanguard/vanguard.png"></img>
+    Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map \
+allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The\
+ result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.
+  </div>
+</div>
+<div class="box" ng-click="layout()">3D Viewer</div>
+<div id="carousel" class="box box-carousel">
+  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal()"></span>
+  <div class="slides_control" id="slides_control">
+    <carousel >
+      <slide ng-repeat="slide in vanguard_imgs" active="slide.active">
+        <div class="modalable" ng-click="viewmodal()"></div>
+        <img ng-src="{{slide.image}}">
+      </slide>
+    </carousel>
+  </div>
+</div>
+<div class="box box-w2">
+  <div class="quote">
+    Added to Team Fortress 2 as part of the <a href="http://www.teamfortress.com/toughbreak/">"Tough Break" update</a>
+    <div class="date">(17/12/2015)</div>
+  </div>
+</div>
+<div class="box v360" ng-click="v360(1)">
+  <img align="center" src="static/images/icons-360.png"></img>
+</div>
