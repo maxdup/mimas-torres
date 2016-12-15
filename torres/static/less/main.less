@@ -162,34 +162,53 @@ body {
         margin-right: 10px;
         margin-bottom: 10px;
         overflow: hidden;
-        .title {
-            position: absolute;
-            height: 100%;
-            width: auto;
-        }
-        .bg{
-            position: absolute;
-            left: 0;
-            top:-65px;
-            width: 100%;
-        }
     }
-    .box-welcome {
-        width: 440px;
-        height: 390px;
-    }
-
     .box-w2 { width: 590px; }
     .box-h2 { height: 390px; }
+    .box-wx { width: 440px; }
+    .box-hx {
+        height: 100%;
+        max-height: 590;
+    }
+
+    .box-welcome {
+        .box-wx;
+        .box-h2;
+    }
+
     .box-main {
+        .box-wx;
         height: 100%;
         max-height:590px;
-        width: 440px;
     }
     .box-separator {
         height:100%;
         width: 40px;
         opacity: 0;
+    }
+    .box-map-thumbnail {
+        height: 90%;
+        max-height: 540px;
+
+        &.offset { margin-top: 50px; }
+        &.a { width: 390px; }
+        &.b { width: 340px; }
+        &.c { width: 290px; }
+        &.d { width: 240px; }
+
+        .title {
+            position: absolute;
+            height: auto;
+            width: 290px;
+            bottom: 0;
+        }
+        .bg{
+            position: absolute;
+            left: 0;
+            margin-left: -100%;
+            width: auto;
+            height: 100%;
+        }
     }
     .box-carousel {
         .box-w2;

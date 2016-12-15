@@ -45,13 +45,17 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     $scope.v360focus = !$scope.v360focus
 
   routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
-  $rootScope.$on('$routeChangeStart', (event, next, current) ->
+
+  $rootScope.$on '$routeChangeStart', (event, next, current) ->
     $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
-    $scope.v360focus = false
-  )
+
+  $scope.$on '$locationChangeStart', (event, next, current) ->
+    if ($scope.v360focus)
+      $scope.v360()
+      event.preventDefault()
 
   $scope.isActive = (viewLocation) ->
-    viewLocation == $location.path()
+    $location.path().startsWith(viewLocation)
 
   $scope.init = ->
     
@@ -159,8 +163,10 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     "static/partials/hadal.html"
     "static/partials/effigy.html"]
 
-  map = $scope.maps.splice(mapnames.indexOf($routeParams.map),1)[0]
-  $scope.maps.unshift(map)
+  mapid = mapnames.indexOf($routeParams.map)
+  if (mapid != -1)
+    map = $scope.maps.splice(mapid,1)[0]
+    $scope.maps.unshift(map)
 
   $scope.vanguard_imgs = [
     { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
