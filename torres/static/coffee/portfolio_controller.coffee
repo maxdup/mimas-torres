@@ -138,13 +138,13 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 .controller 'FolioController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, ModalService) ->
 
-  $scope.viewmodal = (id=0)->
+  $scope.viewmodal = (id='')->
     ModalService.showModal({
       templateUrl: "static/partials/modal_template.html",
       controller: "ModalController"
     }).then((modal) ->
-      boxcarousel = document.getElementsByClassName("box-carousel")[id]
-      carousel = document.getElementsByClassName("slides_control")[id]
+      boxcarousel = $(".box-carousel"+id)[0]
+      carousel = $(id + " > .slides_control")[0]
       overlay = document.getElementById("overlay")
       overlay.appendChild(carousel)
       modal.close.then((result) ->

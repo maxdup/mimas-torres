@@ -4,12 +4,12 @@
     Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.
   </div>
 </div>
-<div class="box box-carousel">
-  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal()"></span>
+<div class="box box-carousel effigy">
+  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal('.effigy')"></span>
   <div class="slides_control" id="slides_control">
     <carousel >
       <slide ng-repeat="slide in effigy_imgs" active="slide.active">
-        <div class="modalable" ng-click="viewmodal(2)"></div>
+        <div class="modalable" ng-click="viewmodal('.effigy')"></div>
         <img ng-src="{{slide.image}}">
       </slide>
     </carousel>
