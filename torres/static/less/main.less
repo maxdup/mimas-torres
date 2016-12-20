@@ -173,6 +173,12 @@ body {
         margin-bottom: 10px;
         overflow: hidden;
     }
+    .box-main {
+        .box-wx;
+        height: 100%;
+        max-height:590px;
+        overflow: auto;
+    }
     .box-w2 { width: 590px; }
     .box-h2 { height: 390px; }
     .box-wx { width: 440px; }
@@ -186,11 +192,6 @@ body {
         .box-h2;
     }
 
-    .box-main {
-        .box-wx;
-        height: 100%;
-        max-height:590px;
-    }
     .box-separator {
         height:100%;
         width: 40px;
@@ -242,12 +243,15 @@ body {
     }
     .blurb {
         color: white;
-        padding: 35px 25px;
-        overflow: auto;
+        padding: 35px 45px 25px 25px;
         img {
             margin-top: -75px;
             height: auto;
             width: 100%;
+        }
+        p {
+            margin: 10px 0;
+            padding-top: 5px;
         }
     }
     .contact {
@@ -377,7 +381,7 @@ body {
         color: rgba(0, 0, 0, 0.87); }
 
     h1, h2, h3, h4, h5, h6 {
-        font-weight: 400;
+        font-weight: 600;
         line-height: 1.1; }
 
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
