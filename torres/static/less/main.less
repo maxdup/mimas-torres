@@ -172,11 +172,16 @@ body {
         margin-right: 10px;
         margin-bottom: 10px;
         overflow: hidden;
+        max-height: 590px;
+        &.offset {
+            margin-top: 40px;
+            height: 90%;
+            max-height: 540px;
+        }
     }
     .box-main {
         .box-wx;
         height: 100%;
-        max-height:590px;
         overflow: auto;
     }
     .box-w2 { width: 590px; }
@@ -184,7 +189,7 @@ body {
     .box-wx { width: 440px; }
     .box-hx {
         height: 100%;
-        max-height: 590;
+        max-height: 590px;
     }
 
     .box-welcome {
@@ -214,7 +219,6 @@ body {
             width: auto;
             height: 100%;
         }
-        &.offset { margin-top: 50px; }
         &.a { width: 390px; }
         &.b { width: 340px; }
         &.c { width: 290px; }
@@ -246,9 +250,39 @@ body {
             }
         }
     }
+
+    .contact {
+        color: white;
+        padding: 25px;
+        ul { padding-left: 5px; }
+    }
+    .links {
+        padding: 25px;
+        margin-top: -40px;
+        ul { padding-left: 15px; }
+        a{
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        img{
+            height: 60px;
+            width: 60px;
+            margin-right: 10px;
+            vertical-align:middle;
+        }
+    }
+
     .blurb {
         color: white;
         padding: 35px 45px 25px 25px;
+        &.box-w2 {
+            padding-top: 25px;
+            h2 { margin-bottom: 0;}
+        }
         img {
             margin-top: -75px;
             height: auto;
@@ -258,10 +292,7 @@ body {
             margin: 10px 0;
             padding-top: 5px;
         }
-    }
-    .contact {
-        color: white;
-        padding: 25px;
+        i {color: #404040; }
     }
     .quote {
         font-size: 35px;
@@ -287,8 +318,9 @@ body {
         }
     }
     .photo {
+        .box-hx;
         img {
-            width: 100%;
+            margin-left: -7% !important;
         }
     }
 
@@ -306,20 +338,6 @@ body {
         }
     }
 
-    .links {
-        padding: 25px;
-        a{
-            font-size: 30px;
-            color: white;
-            text-decoration: none;
-            &hover {
-                text-decoration: underline;
-            }
-        }
-        img{
-            vertical-align:middle;
-        }
-    }
     .slides_control {
         height: 100%;
     }
