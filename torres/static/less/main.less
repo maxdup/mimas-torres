@@ -201,12 +201,6 @@ body {
         height: 90%;
         max-height: 540px;
 
-        &.offset { margin-top: 50px; }
-        &.a { width: 390px; }
-        &.b { width: 340px; }
-        &.c { width: 290px; }
-        &.d { width: 240px; }
-
         .title {
             position: absolute;
             height: auto;
@@ -216,10 +210,21 @@ body {
         .bg{
             position: absolute;
             left: 0;
-            margin-left: -100%;
+            margin-left: -18%;
             width: auto;
             height: 100%;
         }
+        &.offset { margin-top: 50px; }
+        &.a { width: 390px; }
+        &.b { width: 340px; }
+        &.c { width: 290px; }
+        &.d { width: 240px; }
+
+        &.a > a > .bg { margin-left: -18%; }
+        &.b > a > .bg { margin-left: -36%; }
+        &.c > a > .bg { margin-left: -40%; }
+        &.d > a > .bg { margin-left: -45%; }
+
     }
     .box-carousel {
         .box-w2;
