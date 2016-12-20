@@ -36,23 +36,24 @@
     <div id="curtain" class="container-curtain" ng-hide="show"></div>
     <div class="container" ng-hide="v360focus">
       <div class="page-margin" ng-click="v360()"></div>
-      <div class="page-background"></div>
-      <div class="page">
-        <nav>
-          <div class="main-decorator">Level Designer</div>
-          <a class="main" href="#/home">Maxime Dupuis</a> |
-          <a href="#/commercial" ng-class="{ active: isActive('/commercial')}">Commercial work</a> |
-          <a href="#/hobby" ng-class="{ active: isActive('/hobby')}">Hobby projects</a> |
-          <a href="#/code" ng-class="{ active: isActive('/code')}">++</a> |
-          <a href="#/contact" ng-class="{ active: isActive('/contact')}">Contact</a>
-        </nav>
-        <div class="content">
-          <div class="scrollbox">
-            <div ng-view ng-class="{ reverse: reverse}" class="scrollbox-padded view"></div>
+      <div class="page-centering">
+        <div class="page-background"></div>
+        <div class="page">
+          <nav>
+            <div class="main-decorator">Level Designer</div>
+            <a class="main" href="#/home">Maxime Dupuis</a> |
+            <a href="#/commercial" ng-class="{ active: isActive('/commercial')}">Commercial work</a> |
+            <a href="#/hobby" ng-class="{ active: isActive('/hobby')}">Hobby projects</a> |
+            <a href="#/code" ng-class="{ active: isActive('/code')}">++</a> |
+            <a href="#/contact" ng-class="{ active: isActive('/contact')}">Contact</a>
+          </nav>
+          <div class="content">
+            <div class="scrollbox">
+              <div ng-view ng-class="{ reverse: reverse}" class="scrollbox-padded view"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="page-margin" ng-click="v360()"></div>
     </div>
   </div>
 </body>

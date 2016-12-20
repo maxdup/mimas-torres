@@ -33,6 +33,7 @@ body {
         }
     }
     .container {
+        display: table;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -72,16 +73,24 @@ body {
         opacity: 0;
     }
 
-    .page {
+    .page-base {
         position: relative;
+        max-height: 840px;
         width: 100%;
-        height: 85%;
+        height: 94%;
+    }
+    .page-centering {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+    }
+    .page {
+        .page-base;
         transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
     }
     .page-background {
+        .page-base;
         position: absolute;
-        width: 100%;
-        height: 85%;
         background: #202020;
         opacity: 0.90;
     }
@@ -89,8 +98,9 @@ body {
         padding: 20px 100px;
     }
     .page-margin {
+        position: absolute;
         width: 100%;
-        height: 8%;
+        height: 100%;
     }
 
     .content {
