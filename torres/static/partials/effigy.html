@@ -7,11 +7,11 @@
   </div>
 </div>
 <div class="box box-carousel effigy">
-  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal('.effigy')"></span>
+  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.effigy')"></span>
   <div class="slides_control" id="slides_control">
     <carousel >
       <slide ng-repeat="slide in effigy_imgs" active="slide.active">
-        <div class="modalable" ng-click="viewmodal('.effigy')"></div>
+        <div class="modalable" ng-click="viewcarouselmodal('.effigy')"></div>
         <img ng-src="{{slide.image}}">
       </slide>
     </carousel>

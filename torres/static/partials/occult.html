@@ -9,19 +9,19 @@
   <img align="center" src="static/images/icons-360.png"></img>
 </div>
 <div class="box box-carousel occult">
-  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewmodal('.occult')"></span>
+  <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.occult')"></span>
   <div class="slides_control" id="slides_control">
     <carousel >
       <slide ng-repeat="slide in occult_imgs" active="slide.active">
-        <div class="modalable" ng-click="viewmodal('.occult')"></div>
+        <div class="modalable" ng-click="viewcarouselmodal('.occult')"></div>
         <img ng-src="{{slide.image}}">
       </slide>
     </carousel>
   </div>
 </div>
-<div class="box box-w2">
+<div class="box box-w2 box-click" ng-click="viewimagemodal('static/images/pcgamer.jpg')">
   <div class="quote">
-    <a href="pcgamer.jpg" target="_blank">
+    <a>
       <i>"Great TF2 community map"</i> <br />-PCGamer
     </a>
     <div class="date">(2015, April)</div>

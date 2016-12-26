@@ -305,9 +305,6 @@ body {
             font-weight:800;
             color: white;
             text-decoration: none;
-            &:hover {
-                text-decoration: underline;
-            }
         }
         .date {
             color: white;
@@ -333,6 +330,15 @@ body {
             width: auto;
         }
         &:hover {
+            background: #202020;
+            border: 2px solid black;
+        }
+    }
+    .box-click {
+        cursor: pointer;
+        border: 2px solid black;
+
+         &:hover {
             background: #202020;
             border: 2px solid black;
         }
@@ -459,6 +465,12 @@ body {
         left: 3%;
         background: black;
         z-index: 16;
+        img {
+            height: 100%;
+            width: auto;
+            display: block;
+            margin: auto;
+        }
     }
     .fade {
         position: absolute;

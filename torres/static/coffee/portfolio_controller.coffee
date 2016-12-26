@@ -138,9 +138,17 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 .controller 'FolioController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, ModalService) ->
 
-  $scope.viewmodal = (id='')->
+  $scope.viewimagemodal = (image='') ->
     ModalService.showModal({
-      templateUrl: "static/partials/modal_template.html",
+      templateUrl: "static/partials/modal_image.html",
+      controller: "ModalController"
+    }).then((modal) ->
+      console.log(modal)
+      modal.scope.image = image)
+
+  $scope.viewcarouselmodal = (id='')->
+    ModalService.showModal({
+      templateUrl: "static/partials/modal_carousel.html",
       controller: "ModalController"
     }).then((modal) ->
       boxcarousel = $(".box-carousel"+id)[0]
