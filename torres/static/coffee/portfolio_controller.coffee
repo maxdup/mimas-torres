@@ -29,6 +29,12 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     'static/images/vanguard/cp_vanguard360alt2.jpg',
     ]
 
+  $scope.v360 = ->
+    $scope.v360focus = !$scope.v360focus
+
+  $scope.change360 = (bgid) ->
+    $rootScope.$broadcast('changebg', bgid);
+
   $scope.$on('changebg', (event, bgid) ->
     if (currbgid != bgid)
       newmap = THREE.ImageUtils.loadTexture(scenes[bgid]);
@@ -38,11 +44,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
         $scope.show = true
         currbgid = bgid
       , 300);
-      $scope.v360()
-  )
-
-  $scope.v360 = ->
-    $scope.v360focus = !$scope.v360focus
+    $scope.v360())
 
   routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
 
@@ -158,9 +160,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       modal.close.then((result) ->
         boxcarousel.appendChild(carousel)
       ))
-
-  $scope.change360 = (bgid) ->
-    $rootScope.$broadcast('changebg', bgid);
 
   mapnames = [
     "occult"
