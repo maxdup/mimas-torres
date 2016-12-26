@@ -145,7 +145,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       templateUrl: "static/partials/modal_image.html",
       controller: "ModalController"
     }).then((modal) ->
-      console.log(modal)
+      $scope.modal = modal
       modal.scope.image = image)
 
   $scope.viewcarouselmodal = (id='')->
@@ -153,6 +153,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       templateUrl: "static/partials/modal_carousel.html",
       controller: "ModalController"
     }).then((modal) ->
+      $scope.modal = modal
       boxcarousel = $(".box-carousel"+id)[0]
       carousel = $(id + " > .slides_control")[0]
       overlay = document.getElementById("overlay")
@@ -160,6 +161,11 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       modal.close.then((result) ->
         boxcarousel.appendChild(carousel)
       ))
+
+  $scope.$on '$locationChangeStart', (event, next, current) ->
+    if ($scope.modal != null)
+      $scope.modal.scope.close()
+      event.preventDefault()
 
   mapnames = [
     "occult"
