@@ -296,11 +296,12 @@ body {
     }
     .quote {
         font-size: 35px;
-        font-weight: lighter;
+        font-weight: 400;
         line-height: 92%;
         color: white;
         padding: 50px 25px;;
         overflow: auto;
+        b { font-weight: 800; }
         a {
             font-weight:800;
             color: white;
@@ -311,6 +312,7 @@ body {
             float: right;
             font-size: 20px;
             font-style: italic;
+            font-weight: lighter;
             padding-top: 2px;
         }
     }
@@ -341,7 +343,10 @@ body {
          &:hover {
             background: #202020;
             border: 2px solid black;
+            text-decoration: none;
         }
+         &:active { text-decoration: none; }
+         &:focus { text-decoration: none; }
     }
 
     .slides_control {
