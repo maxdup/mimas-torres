@@ -222,7 +222,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   $scope.layout()
 
   $(".content").mousewheel((event, delta) ->
-    this.scrollLeft -= (delta * 30)
+    this.scrollLeft -= (delta * 10)
     event.preventDefault())
 
 .controller('ModalController', ['$scope', 'close', ($scope, close) ->
