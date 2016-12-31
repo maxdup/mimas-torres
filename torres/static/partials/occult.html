@@ -11,7 +11,7 @@
 <div class="box box-carousel occult">
   <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.occult')"></span>
   <div class="slides_control" id="slides_control">
-    <carousel >
+    <carousel template-url="static/partials/carousel.html">
       <slide ng-repeat="slide in occult_imgs" active="slide.active">
         <div class="modalable" ng-click="viewcarouselmodal('.occult')"></div>
         <img ng-src="{{slide.image}}">

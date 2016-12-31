@@ -238,10 +238,10 @@ body {
         .box-h2;
         .fullscreen {
             position: absolute;
-            top: 90%;
-            right: 0;
-            height: 40px;
-            width: 40px;
+            top: 85%;
+            right: 1%;
+            height: 35px;
+            width: 35px;
             color: #808080;
             z-index: 10;
             padding-top: 10px;
@@ -370,6 +370,11 @@ body {
             height: 100%;
             width: 100%;
             cursor: pointer;
+            &:hover {
+              background: white;
+              opacity: 0.05;
+              border: 2px solid black;
+            }
         }
         img {
             height: 100%;
@@ -532,6 +537,36 @@ body {
     }
     .carousel-control {
         cursor: pointer;
+    }
+    .carousel-progress {
+        bottom: 1.5%;
+        right: 2%;
+        left: 2%;
+        width: 96%;
+    }
+
+}
+
+.carousel-progress {
+    position: absolute;
+    height: 12px;
+    bottom: 2px;
+    left: 0.5%;
+    right: 0.5%;
+    width: 99%;
+    opacity: 0.70;
+    cursor: pointer;
+
+    td {
+        border:1px solid white;
+        &:hover {
+            background: white;
+            opacity: 0.25;
+        }
+        &.active {
+            background: white;
+            opacity: 1;
+        }
     }
 }
 
