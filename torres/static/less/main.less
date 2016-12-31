@@ -463,12 +463,11 @@ body {
 
 #custom-modal {
     #overlay {
-        position: absolute;
-        width: 94%;
-        height: 90%;
-        top: 5%;
-        left: 3%;
+        position: relative;
         background: black;
+        display: inline-block;
+        height: 92%;
+        margin: 2%;
         z-index: 16;
         img {
             height: 100%;
@@ -484,11 +483,21 @@ body {
         right: 0;
         left: 0;
         background: black;
-        opacity: 0.5;
+        opacity: 0.75;
         z-index: 15;
     }
     #slides_control {
         height: 100%;
+    }
+    .modal-wrap {
+        position: absolute;
+        text-align: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 16;
+        //margin: 2%;
     }
     .close {
         position: absolute;
@@ -514,6 +523,8 @@ body {
         }
         .item {
             overflow: hidden;
+            height: 100%;
+            width: auto;
         }
     }
     .carousel-control {
