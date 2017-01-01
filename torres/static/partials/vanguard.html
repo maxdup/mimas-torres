@@ -6,7 +6,13 @@
     </p>
   </div>
 </div>
-<div class="box">3D Viewer</div>
+<div class="box box-wrap" ng-click="openmodel(0)"
+     anim-callback="models[0]['show']" anim-class="box-3d"
+     after-remove="layout()" after-add="layout()" >
+  <div ng-class="{'box-3d': models[0]['show'], 'box-click': models[0]['show']}">
+    3D Viewer
+  </div>
+</div>
 <div class="box box-carousel vanguard">
   <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.vanguard')"></span>
   <div class="slides_control" id="slides_control">

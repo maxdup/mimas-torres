@@ -43,7 +43,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
         material.map = newmap
         $scope.show = true
         currbgid = bgid
-      , 300);
+      , 300)
     $scope.v360())
 
   routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
@@ -140,36 +140,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 .controller 'FolioController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, ModalService) ->
 
-  $scope.viewimagemodal = (image='') ->
-    ModalService.showModal({
-      templateUrl: "static/partials/modal_image.html",
-      controller: "ModalController"
-    }).then((modal) ->
-      $scope.modal = modal
-      $scope.modalactive = true
-      modal.scope.image = image)
-
-  $scope.viewcarouselmodal = (id='')->
-    ModalService.showModal({
-      templateUrl: "static/partials/modal_carousel.html",
-      controller: "ModalController"
-    }).then((modal) ->
-      $scope.modal = modal
-      $scope.modalactive = true
-      boxcarousel = $(".box-carousel"+id)[0]
-      carousel = $(id + " > .slides_control")[0]
-      overlay = document.getElementById("overlay")
-      overlay.appendChild(carousel)
-      modal.close.then((result) ->
-        boxcarousel.appendChild(carousel)
-      ))
-
-  $scope.$on '$locationChangeStart', (event, next, current) ->
-    if ($scope.modalactive == true)
-      $scope.modalactive = false
-      $scope.modal.scope.close()
-      event.preventDefault()
-
   mapnames = [
     "occult"
     "hadal"
@@ -225,6 +195,63 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     this.scrollLeft -= (delta * 10)
     event.preventDefault())
 
+  $scope.viewimagemodal = (image='') ->
+    ModalService.showModal({
+      templateUrl: "static/partials/modal_image.html",
+      controller: "ModalController"
+    }).then((modal) ->
+      $scope.modal = modal
+      $scope.modalactive = true
+      modal.scope.image = image)
+
+  $scope.viewcarouselmodal = (id='')->
+    ModalService.showModal({
+      templateUrl: "static/partials/modal_carousel.html",
+      controller: "ModalController"
+    }).then((modal) ->
+      $scope.modal = modal
+      $scope.modalactive = true
+      boxcarousel = $(".box-carousel"+id)[0]
+      carousel = $(id + " > .slides_control")[0]
+      overlay = document.getElementById("overlay")
+      overlay.appendChild(carousel)
+      modal.close.then((result) ->
+        boxcarousel.appendChild(carousel)
+      ))
+
+  $scope.$on '$locationChangeStart', (event, next, current) ->
+    if ($scope.modalactive == true)
+      $scope.modalactive = false
+      $scope.modal.scope.close()
+      event.preventDefault()
+
+  $scope.models = [
+    {
+      url: 'https://sketchfab.com/models/8d0b45700f534fb0827958fb2f6050ef/embed',
+      show: true
+    }]
+  $scope.openmodel = (id=0) ->
+    $scope.models[id]['show'] = !$scope.models[id]['show']
+
 .controller('ModalController', ['$scope', 'close', ($scope, close) ->
     $scope.close = close
   ])
+
+
+.directive('animCallback', ($animate) ->
+  {
+    scope: {
+      'animCallback': '=',
+      'afterAdd': '&',
+      'afterRemove': '&',
+      'animClass': '@?'
+    },
+    link: (scope, element) ->
+      scope.$watch('animCallback', (show, oldShow) ->
+        if (show)
+          $animate.removeClass(element, scope.animClass).then(scope.afterRemove);
+        if (!show)
+          $animate.addClass(element, scope.animClass).then(scope.afterAdd);
+      )
+  }
+)
