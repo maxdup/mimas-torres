@@ -13,16 +13,18 @@
     "angular-mocks": "~1.3.x",
     "angular-cookies": "1.3.x",
     "angular-resource": "~1.3.0",
+    "angular-bootstrap": "~0.13.0",
+    "angular-modal-service": "^0.10.1",
     "html5-boilerplate": "~4.3.0",
     "underscore": "~1.8.3",
     "bootstrap": "~3.3.5",
     "jquery": "~2.1.4",
-    "angular-bootstrap": "~0.13.0",
-    "three.js": "threejs#*",
-    "isotope": "^3.0.1",
-    "reset-css": "^2.2.0",
     "jquery-mousewheel": "^3.1.13",
-    "angular-modal-service": "^0.10.1",
-    "isotope-masonry-horizontal": "^2.0.0"
+    "three.js": "threejs#*",
+    "three.js-controls": "^0.0.67",
+    "isotope": "^3.0.1",
+    "isotope-masonry-horizontal": "^2.0.0",
+    "reset-css": "^2.2.0",
+    "threejs": "*"
   }
 }

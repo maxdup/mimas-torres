@@ -6,18 +6,18 @@
     </p>
   </div>
 </div>
+<div class="box v360" ng-click="change360(0)">
+  <img align="center" src="static/images/icons-360.png"></img>
+</div>
 <div class="box box-carousel effigy">
   <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.effigy')"></span>
   <div class="slides_control" id="slides_control">
     <carousel template-url="static/partials/carousel.html">
-      <slide ng-repeat="slide in effigy_imgs" active="slide.active">
+      <slide ng-repeat="slide in maps.effigy.images" active="slide.active">
         <div class="modalable" ng-click="viewcarouselmodal('.effigy')"></div>
         <img ng-src="{{slide.image}}">
       </slide>
     </carousel>
   </div>
-</div>
-<div class="box v360" ng-click="change360(0)">
-  <img align="center" src="static/images/icons-360.png"></img>
 </div>
 <div class="box box-separator"/>

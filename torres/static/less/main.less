@@ -162,7 +162,6 @@ body {
     }
     .boxes {
         height: 100%;
-        overflow: hidden;
         display: inline-block;
         white-space: normal;
     }
@@ -260,21 +259,19 @@ body {
         }
     }
     .box-wrap {
-        .box-w1;
-        .box-h1;
+        .box;
         background: none;
-        &>div {
-            .box;
+        &.big {
+            .box-w2;
+            .box-hx;
         }
     }
     .box-3d {
-        .box-w2;
-        .box-hx;
-        &>div {
+        .box;
+        &.big {
             .box-w2;
             .box-hx;
-            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
-
+            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
         }
     }
 

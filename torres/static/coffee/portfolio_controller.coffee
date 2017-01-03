@@ -1,187 +1,80 @@
 angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
-.controller 'RootController',
-($scope, $location, $http, $route, $rootScope, $window, $timeout) ->
-  
-  camera = null
-  scene = null
-  renderer = null
-  mesh = null
-  material = null
-  isUserInteracting = false
-  onPointerDownPointerX = 0
-  onPointerDownPointerY = 0
-  onPointerDownLon = 0
-  onPointerDownLat = 0
-  lon = 0
-  onMouseDownLon = 0
-  lat = 0
-  onMouseDownLat = 0
-  phi = 0
-  theta = 0
-
-  currbgid = 0
-
-  $scope.show = true
-
-  scenes = ['static/images/vanguard/cp_vanguard360.jpg',
-    'static/images/vanguard/cp_vanguard360alt.jpg',
-    'static/images/vanguard/cp_vanguard360alt2.jpg',
-    ]
-
-  $scope.v360 = ->
-    $scope.v360focus = !$scope.v360focus
-
-  $scope.change360 = (bgid) ->
-    $rootScope.$broadcast('changebg', bgid);
-
-  $scope.$on('changebg', (event, bgid) ->
-    if (currbgid != bgid)
-      newmap = THREE.ImageUtils.loadTexture(scenes[bgid]);
-      $scope.show = false
-      $timeout( ->
-        material.map = newmap
-        $scope.show = true
-        currbgid = bgid
-      , 300)
-    $scope.v360())
-
-  routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
-
-  $rootScope.$on '$routeChangeStart', (event, next, current) ->
-    $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
-
-  $scope.$on '$locationChangeStart', (event, next, current) ->
-    if ($scope.v360focus)
-      $scope.v360()
-      event.preventDefault()
-
-  $scope.isActive = (viewLocation) ->
-    $location.path().startsWith(viewLocation)
-
-  $scope.init = ->
-    
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-    camera.target = new THREE.Vector3( 0, 0, 0 )
-    camera.position.z = -100
-    camera.lookAt( camera.target )
-    scene = new THREE.Scene()
-
-    geometry = new THREE.SphereGeometry(500,60,40)
-    geometry.scale(-1, 1, 1)
-    material = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load(scenes[0])} )
-    mesh = new THREE.Mesh(geometry, material)
-
-    scene.add(mesh)
-
-    renderer = new THREE.WebGLRenderer()
-
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize( window.innerWidth, window.innerHeight )
-    tdcontainer = document.getElementById("portfolio")
-    tdcontainer.appendChild( renderer.domElement )
-
-    document.addEventListener( 'mousedown', onDocumentMouseDown, false )
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false )
-    document.addEventListener( 'mouseup', onDocumentMouseUp, false )
-    document.addEventListener( 'wheel', onDocumentMouseWheel, false )
-
-  onDocumentMouseDown = (event) ->
-    if $scope.v360focus
-      event.preventDefault()
-      isUserInteracting = true;
-      onPointerDownPointerX = event.clientX
-      onPointerDownPointerY = event.clientY
-      onPointerDownLon = lon
-      onPointerDownLat = lat
-
-  onDocumentMouseUp = (event) ->
-    isUserInteracting = false
-
-  onDocumentMouseMove = (event) ->
-    if isUserInteracting and $scope.v360focus
-      lon = (onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
-      lat = (event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
-
-  onDocumentMouseWheel = (event) ->
-    if $scope.v360focus
-      camera.fov = Math.max(Math.min(camera.fov + event.deltaY * 0.05, 120),60)
-      camera.updateProjectionMatrix()
-
-  $scope.animate = ->
-    requestAnimationFrame( $scope.animate )
-    $scope.update()
-
-
-  $scope.update = ->
-    lon += 0.03;
-
-    lat = Math.max( - 85, Math.min( 85, lat ) )
-    phi = THREE.Math.degToRad( 90 - lat )
-    theta = THREE.Math.degToRad( lon )
-    camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta )
-    camera.target.y = 500 * Math.cos( phi )
-    camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta )
-
-    camera.lookAt( camera.target )
-    renderer.render( scene, camera )
-
-  $scope.init()
-  $scope.animate()
-
-  w = angular.element($window)
-  w.bind( 'resize', ->
-    console.log("resize")
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize( window.innerWidth, window.innerHeight))
-
 .controller 'FolioController',
-($scope, $location, $http, $route, $routeParams, $rootScope, $window, ModalService) ->
+($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout, $document, ModalService) ->
 
-  mapnames = [
-    "occult"
-    "hadal"
-    "effigy"]
-  $scope.maps = [
-    "static/partials/occult.html"
-    "static/partials/hadal.html"
-    "static/partials/effigy.html"]
-
-  mapid = mapnames.indexOf($routeParams.map)
-  if (mapid != -1)
-    map = $scope.maps.splice(mapid,1)[0]
-    $scope.maps.unshift(map)
-
-  $scope.vanguard_imgs = [
-    { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
-    { image: 'static/images/vanguard/cp_vanguard_rc61.jpg'},
-    { image: 'static/images/vanguard/cp_vanguard_rc62.jpg'},
-    { image: 'static/images/vanguard/cp_vanguard_rc63.jpg'},
-    { image: 'static/images/vanguard/cp_vanguard_rc64.jpg'},
-    ]
-  $scope.hadal_imgs = [
-    { image: 'static/images/hadal/cp_hadal_b130.jpg'},
-    { image: 'static/images/hadal/cp_hadal_b131.jpg'},
-    { image: 'static/images/hadal/cp_hadal_b132.jpg'},
-    { image: 'static/images/hadal/cp_hadal_b133.jpg'},
-    { image: 'static/images/hadal/cp_hadal_b134.jpg'},
-    ]
-  $scope.occult_imgs = [
-    { image: 'static/images/occult/koth_occult_rc40.jpg'},
-    { image: 'static/images/occult/koth_occult_rc41.jpg'},
-    { image: 'static/images/occult/koth_occult_rc42.jpg'},
-    { image: 'static/images/occult/koth_occult_rc43.jpg'},
-    { image: 'static/images/occult/koth_occult_rc44.jpg'},
-    ]
-  $scope.effigy_imgs = [
-    { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
-    { image: 'static/images/effigy/pl_effigy_rc21.jpg'},
-    { image: 'static/images/effigy/pl_effigy_rc22.jpg'},
-    { image: 'static/images/effigy/pl_effigy_rc23.jpg'},
-    { image: 'static/images/effigy/pl_effigy_rc24.jpg'},
-    ]
+  $scope.maps = {
+    vanguard: {
+      order: 0,
+      partial: "static/partials/vanguard.html",
+      mdlurl: 'static/models/hadal.obj',
+      targetid: 'vanguard3d',
+      mdlshow: false,
+      level: 1,
+      images: [
+        { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc61.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc62.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc63.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc64.jpg'},
+      ],
+    },
+    hadal: {
+      order: 2,
+      partial: "static/partials/hadal.html",
+      mdlurl: 'static/models/hadal.obj',
+      targetid: 'hadal3d',
+      mdlshow: false,
+      level: 0,
+      images: [
+        { image: 'static/images/hadal/cp_hadal_b130.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b131.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b132.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b133.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b134.jpg'},
+      ]
+    },
+    occult: {
+      order: 1,
+      partial: "static/partials/occult.html",
+      mdlurl: 'static/models/occult.obj',
+      targetid: 'occult3d',
+      mdlshow: false
+      level: 0,
+      images: [
+        { image: 'static/images/occult/koth_occult_rc40.jpg'},
+        { image: 'static/images/occult/koth_occult_rc41.jpg'},
+        { image: 'static/images/occult/koth_occult_rc42.jpg'},
+        { image: 'static/images/occult/koth_occult_rc43.jpg'},
+        { image: 'static/images/occult/koth_occult_rc44.jpg'},
+      ]
+    },
+    effigy: {
+      order: 3,
+      partial: "static/partials/effigy.html",
+      level: 0,
+      images: [
+        { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc21.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc22.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc23.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc24.jpg'},
+      ]
+    }
+  }
+  console.log($location)
+  if $location['$$path'].startsWith('/hobby')
+    front = {}
+    $scope.mapsQueue = []
+    for k, v of $scope.maps
+      if(v['level'] == 0)
+        if k == $routeParams.map
+          front = v
+        else
+          $scope.mapsQueue.push(v)
+    $scope.mapsQueue.sort((a, b) -> return a['order']-b['order'])
+    if front
+      $scope.mapsQueue.unshift(front)
 
   $scope.layout = ->
     $('.boxes').isotope
@@ -190,6 +83,16 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       masonryHorizontal: rowHeight: 200
     return
   $scope.layout()
+
+  $scope.reload = ->
+    $('.boxes').isotope('reloadItems')
+    $scope.layout()
+
+  $scope.$on 'isotopeReload', (event, next, current) ->
+    $scope.reload()
+  $scope.$on 'isotopeLayout', (event, next, current) ->
+    $scope.layout()
+
 
   $(".content").mousewheel((event, delta) ->
     this.scrollLeft -= (delta * 10)
@@ -225,33 +128,114 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       $scope.modal.scope.close()
       event.preventDefault()
 
-  $scope.models = [
-    {
-      url: 'https://sketchfab.com/models/8d0b45700f534fb0827958fb2f6050ef/embed',
-      show: true
-    }]
-  $scope.openmodel = (id=0) ->
-    $scope.models[id]['show'] = !$scope.models[id]['show']
+  $scope.openmodel = (map='') ->
+    $scope.maps[map]['mdlshow'] = false
 
-.controller('ModalController', ['$scope', 'close', ($scope, close) ->
-    $scope.close = close
-  ])
+  camera = null
+  controls = null
+  scene = null
+  renderer = null
+  material = null
+  light = null
 
+  SCREEN_WIDTH = ''
+  SCREEN_HEIGHT = ''
+  SHADOW_MAP_WIDTH = 1024
+  SHADOW_MAP_HEIGHT = 1024
+  lightShadowMapViewer = null
+  showHUD = false
 
-.directive('animCallback', ($animate) ->
-  {
-    scope: {
-      'animCallback': '=',
-      'afterAdd': '&',
-      'afterRemove': '&',
-      'animClass': '@?'
-    },
-    link: (scope, element) ->
-      scope.$watch('animCallback', (show, oldShow) ->
-        if (show)
-          $animate.removeClass(element, scope.animClass).then(scope.afterRemove);
-        if (!show)
-          $animate.addClass(element, scope.animClass).then(scope.afterAdd);
+  $scope.$on 'init3d', (event, id) ->
+    container = document.getElementById($scope.maps[id]['targetid'])
+
+    SCREEN_WIDTH = container.offsetWidth
+    SCREEN_HEIGHT = container.offsetHeight
+
+    scene = new THREE.Scene()
+    scene.fog = new THREE.FogExp2( 0x444444, 2 )
+
+    ambient = new THREE.AmbientLight( 0x555555 )
+    scene.add( ambient )
+
+    light = new THREE.PointLight( 0xffffff, 5, 1000, 2)
+    light.position.set( 200, 300, 0 )
+    scene.add(light)
+
+    light = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI / 2 )
+    light.position.set( 200, 900, 900 )
+    light.target.position.set( 0, 0, 0 )
+    light.castShadow = true
+    light.shadow = new THREE.LightShadow( new THREE.PerspectiveCamera( 50, 1, 1200, 2500 ) )
+    light.shadow.bias = 0.0001
+    light.shadow.mapSize.width = SHADOW_MAP_WIDTH
+    light.shadow.mapSize.height = SHADOW_MAP_HEIGHT
+    scene.add( light )
+
+    #createHUD()
+
+    material = new THREE.MeshPhongMaterial( { color:0xffffff } )
+
+    manager = new THREE.LoadingManager()
+    loader = new THREE.OBJLoader( manager )
+    loader.load($scope.maps[id]['mdlurl'], ( object ) ->
+      object.traverse( ( child ) ->
+        if ( child instanceof THREE.Mesh )
+          child.material = material
+          child.castShadow = true
+          child.receiveShadow = true
+
       )
-  }
-)
+      object.scale.set(0.1, 0.1, 0.1)
+      object.position.y = - 95
+
+      scene.add( object )
+    , null, null)
+
+
+    renderer = new THREE.WebGLRenderer( { antialias: true } )
+    renderer.setClearColor( scene.fog.color )
+    renderer.setPixelRatio( window.devicePixelRatio )
+    renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT )
+    renderer.autoClear = false
+
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
+
+    camera = new THREE.OrthographicCamera(SCREEN_WIDTH / - 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_HEIGHT / - 2, - 500, 1000)
+    camera.target = new THREE.Vector3( 0, 0, 0 )
+    camera.position.x = -300
+    camera.position.y = 300
+    camera.position.z = 300
+    camera.lookAt( camera.target )
+
+    controls = new THREE.OrbitControls( camera, renderer.domElement )
+    controls.enableDamping = true
+    controls.dampingFactor = 0.1
+    controls.enableZoom = false
+
+    canvas = angular.element(renderer.domElement)
+    wrapcontainer = angular.element(container)
+    wrapcontainer.append(renderer.domElement)
+
+    animate()
+
+  animate = ->
+    requestAnimationFrame(animate)
+    render()
+
+  render = ->
+    controls.update()
+    renderer.clear()
+    renderer.render( scene, camera )
+
+    if ( showHUD )
+      lightShadowMapViewer.render( renderer )
+
+  #shadow maps debug
+  createHUD = ->
+    lightShadowMapViewer = new THREE.ShadowMapViewer(light)
+    lightShadowMapViewer.position.x = 10
+    lightShadowMapViewer.position.y = SCREEN_HEIGHT - ( SHADOW_MAP_HEIGHT / 4 ) - 10
+    lightShadowMapViewer.size.width = SHADOW_MAP_WIDTH / 4
+    lightShadowMapViewer.size.height = SHADOW_MAP_HEIGHT / 4
+    lightShadowMapViewer.update()

@@ -1,3 +1,4 @@
+<!--main-->
 <div class="box box-main">
   <div class="blurb">
     <img src="static/images/vanguard/vanguard.png"></img>
@@ -6,30 +7,32 @@
     </p>
   </div>
 </div>
-<div class="box box-wrap" ng-click="openmodel(0)"
-     anim-callback="models[0]['show']" anim-class="box-3d"
-     after-remove="layout()" after-add="layout()" >
-  <div ng-class="{'box-3d': models[0]['show'], 'box-click': models[0]['show']}">
-    3D Viewer
-  </div>
-</div>
+
+<!--3D-->
+<box3d map="vanguard" maps="maps"/>
+
+<!--carousel-->
 <div class="box box-carousel vanguard">
   <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.vanguard')"></span>
   <div class="slides_control" id="slides_control">
     <carousel template-url="static/partials/carousel.html">
-      <slide ng-repeat="slide in vanguard_imgs" active="slide.active">
+      <slide ng-repeat="slide in maps.vanguard.images" active="slide.active">
         <div class="modalable" ng-click="viewcarouselmodal('.vanguard')"></div>
         <img ng-src="{{slide.image}}">
       </slide>
     </carousel>
   </div>
 </div>
+
+<!--update page-->
 <a class="box box-w2 box-click" href="http://www.teamfortress.com/toughbreak/" target="_blank">
   <div class="quote">
     Added to Team Fortress 2 as part of the <b>"Tough Break" update</b>
     <div class="date">(17/12/2015)</div>
   </div>
 </a>
+
+<!--360-->
 <div class="box v360" ng-click="change360(0)">
   <img align="center" src="static/images/icons-360.png"></img>
 </div>

@@ -1,4 +1,4 @@
-app = angular.module('folioApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngAnimate', 'folio.Controllers', 'ui.bootstrap'])
+app = angular.module('folioApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngAnimate', 'folio.rootController', 'folio.Controllers', 'ui.bootstrap'])
 app.config ($routeProvider, $httpProvider) ->
   $routeProvider
   .when '/home',
