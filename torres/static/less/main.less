@@ -319,6 +319,47 @@ body {
         }
         i {color: #404040; }
     }
+
+    .install {
+        position: absolute;
+        bottom: 0;
+        color: white;
+        width: 100%;
+        padding: 10px;
+        & > a {
+            float: right;
+            padding-right: 20px;
+            cursor: pointer;
+            color: white;
+            font-size: 2.28rem;
+            line-height: 110%;
+            margin: 1.14rem 0 0.912rem 0;
+        }
+        div {
+            .blurb;
+            padding-top: 20px;
+            padding-bottom: 15px;
+            color: white;
+            background: #222222;
+        }
+        ol {
+            color: white;
+            padding-left: 25px;
+            list-style-type: decimal;
+            a {
+                font-size: 16px;
+                color: white;
+                text-decoration: underline;
+                &:hover {
+                    color: #bbbbbb;
+                }
+            }
+        }
+        li {
+            line-height: 20px;
+        }
+    }
+
     .quote {
         font-size: 35px;
         font-weight: 400;

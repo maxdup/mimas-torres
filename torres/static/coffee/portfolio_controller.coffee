@@ -3,6 +3,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 .controller 'FolioController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout, $document, ModalService) ->
 
+  $scope.queue()
   $scope.layout = ->
     $('.boxes').isotope
       layoutMode: 'masonryHorizontal',

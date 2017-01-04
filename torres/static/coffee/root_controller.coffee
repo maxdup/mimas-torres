@@ -56,7 +56,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
         { image: 'static/images/hadal/cp_hadal_b132.jpg'},
         { image: 'static/images/hadal/cp_hadal_b133.jpg'},
         { image: 'static/images/hadal/cp_hadal_b134.jpg'},
-        ]
+        ],
       panorama: 'static/images/vanguard/cp_vanguard360.jpg',
     },
     occult: {
@@ -73,7 +73,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
         { image: 'static/images/occult/koth_occult_rc42.jpg'},
         { image: 'static/images/occult/koth_occult_rc43.jpg'},
         { image: 'static/images/occult/koth_occult_rc44.jpg'},
-      ]
+      ],
       panorama: 'static/images/vanguard/cp_vanguard360.jpg',
     },
     effigy: {
@@ -106,13 +106,13 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       , 300)
     $scope.v360())
 
-  if $location['$$path'].startsWith('/hobby')
+  $scope.queue = ->
     front = {}
     $scope.mapsQueue = []
     for k, v of $scope.maps
       if(v['level'] == 0)
         if k == $routeParams.map
-            front = v
+          front = v
         else
           $scope.mapsQueue.push(v)
     $scope.mapsQueue.sort((a, b) -> return a['order']-b['order'])
