@@ -1,7 +1,7 @@
 angular.module('folio.rootController', ['ui.bootstrap'])
 
 .controller 'RootController',
-($scope, $location, $http, $route, $rootScope, $window, $timeout) ->
+($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout) ->
 
   camera = null
   scene = null
@@ -20,37 +20,112 @@ angular.module('folio.rootController', ['ui.bootstrap'])
   phi = 0
   theta = 0
 
-  currbgid = 0
+  currmap = 'vanguard'
 
   $scope.show = true
 
-  scenes = ['static/images/vanguard/cp_vanguard360.jpg',
-    'static/images/vanguard/cp_vanguard360alt.jpg',
-    'static/images/vanguard/cp_vanguard360alt2.jpg',
-    ]
+  $scope.maps = {
+    vanguard: {
+      order: 0,
+      partial: "static/partials/vanguard.html",
+      mdlurl: 'static/models/hadal.obj',
+      targetid: 'vanguard3d',
+      mdlshow: false,
+      level: 1,
+      images: [
+        { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc61.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc62.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc63.jpg'},
+        { image: 'static/images/vanguard/cp_vanguard_rc64.jpg'},
+        ],
+      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+    },
+    hadal: {
+      order: 2,
+      partial: "static/partials/hadal.html",
+      mdlurl: 'static/models/hadal.obj',
+      targetid: 'hadal3d',
+      mdlshow: false,
+      level: 0,
+      images: [
+        { image: 'static/images/hadal/cp_hadal_b130.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b131.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b132.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b133.jpg'},
+        { image: 'static/images/hadal/cp_hadal_b134.jpg'},
+        ]
+      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+    },
+    occult: {
+      order: 1,
+      partial: "static/partials/occult.html",
+      mdlurl: 'static/models/occult.obj',
+      targetid: 'occult3d',
+      mdlshow: false
+      level: 0,
+      images: [
+        { image: 'static/images/occult/koth_occult_rc40.jpg'},
+        { image: 'static/images/occult/koth_occult_rc41.jpg'},
+        { image: 'static/images/occult/koth_occult_rc42.jpg'},
+        { image: 'static/images/occult/koth_occult_rc43.jpg'},
+        { image: 'static/images/occult/koth_occult_rc44.jpg'},
+      ]
+      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+    },
+    effigy: {
+      order: 3,
+      partial: "static/partials/effigy.html",
+      level: 0,
+      images: [
+        { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc21.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc22.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc23.jpg'},
+        { image: 'static/images/effigy/pl_effigy_rc24.jpg'},
+      ],
+      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+    }
+  }
 
-  $scope.v360 = ->
-    $scope.v360focus = !$scope.v360focus
+  $scope.change360 = (map) ->
+    $rootScope.$broadcast('changebg', map)
 
-  $scope.change360 = (bgid) ->
-    $rootScope.$broadcast('changebg', bgid);
-
-  $scope.$on('changebg', (event, bgid) ->
-    if (currbgid != bgid)
-      newmap = THREE.ImageUtils.loadTexture(scenes[bgid]);
+  $scope.$on('changebg', (event, map) ->
+    if (currmap != map)
+      newmap = THREE.ImageUtils.loadTexture($scope.maps[map]['panorama'])
       $scope.show = false
       $timeout( ->
         material.map = newmap
         $scope.show = true
-        currbgid = bgid
+        currmap = map
       , 300)
     $scope.v360())
 
-  routes = ["/home","/commercial","/hobby/:map?","/code","/con7tact"]
+  if $location['$$path'].startsWith('/hobby')
+    front = {}
+    $scope.mapsQueue = []
+    for k, v of $scope.maps
+      if(v['level'] == 0)
+        if k == $routeParams.map
+            front = v
+        else
+          $scope.mapsQueue.push(v)
+    $scope.mapsQueue.sort((a, b) -> return a['order']-b['order'])
+    if front
+      $scope.mapsQueue.unshift(front)
+
+  $scope.v360 = ->
+    $scope.v360focus = !$scope.v360focus
+
+  routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     if !current
       return
+    for k, v of $scope.maps
+      v['mdlshow'] = false
+
     $scope.reverse = (routes.indexOf(current['$$route']['originalPath']) > routes.indexOf(next['$$route']['originalPath']))
 
   $scope.$on '$locationChangeStart', (event, next, current) ->
@@ -72,7 +147,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
     geometry = new THREE.SphereGeometry(500,60,40)
     geometry.scale(-1, 1, 1)
     material = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load(scenes[0])} )
+      map: new THREE.TextureLoader().load($scope.maps[currmap]['panorama'])})
     mesh = new THREE.Mesh(geometry, material)
 
     scene.add(mesh)
@@ -115,7 +190,6 @@ angular.module('folio.rootController', ['ui.bootstrap'])
     requestAnimationFrame($scope.animate)
     $scope.update()
 
-
   $scope.update = ->
     lon += 0.03;
 
@@ -136,11 +210,12 @@ angular.module('folio.rootController', ['ui.bootstrap'])
   w.bind( 'resize', ->
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
-    renderer.setSize( window.innerWidth, window.innerHeight))
+    renderer.setSize( window.innerWidth, window.innerHeight)
+    pageresize())
 
 .controller('ModalController', ['$scope', 'close', ($scope, close) ->
-    $scope.close = close
-  ])
+  $scope.close = close
+])
 
 .directive("box3d", ($animate) ->
   {
