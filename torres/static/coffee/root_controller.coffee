@@ -31,6 +31,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       mdlurl: 'static/models/hadal.obj',
       targetid: 'vanguard3d',
       mdlshow: false,
+      startup: 'cp_vanguard',
       level: 1,
       images: [
         { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
@@ -47,6 +48,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       mdlurl: 'static/models/hadal.obj',
       targetid: 'hadal3d',
       mdlshow: false,
+      startup: "workshop%2f804251853",
       level: 0,
       images: [
         { image: 'static/images/hadal/cp_hadal_b130.jpg'},
@@ -62,7 +64,8 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       partial: "static/partials/occult.html",
       mdlurl: 'static/models/occult.obj',
       targetid: 'occult3d',
-      mdlshow: false
+      mdlshow: false,
+      startup: "workshop%2f468770640",
       level: 0,
       images: [
         { image: 'static/images/occult/koth_occult_rc40.jpg'},
@@ -76,6 +79,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
     effigy: {
       order: 3,
       partial: "static/partials/effigy.html",
+      startup: "workshop%2f543841027",
       level: 0,
       images: [
         { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
@@ -211,7 +215,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize( window.innerWidth, window.innerHeight)
-    pageresize())
+  )
 
 .controller('ModalController', ['$scope', 'close', ($scope, close) ->
   $scope.close = close
