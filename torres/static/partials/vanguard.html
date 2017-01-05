@@ -6,26 +6,29 @@
       Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.
     </p>
   </div>
-  <div class="install">
-    <a ng-click="install = !install">Want to play?</a>
-  </div>
-  <div class="install" ng-show="install">
-    <div>
-      <h3>Instructions</h3>
-      <ol class="instructions">
-        <li>
-          <a href="http://store.steampowered.com/about/" target="_blank">
-            Install and log into the Steam client</a>
-        </li>
-        <li>
-          <a href="steam://install/440" target="_blank">
-            Install Team Fortress 2 (free to play)</a>
-        </li>
-        <li>
-          <a href="steam://run/440//+map%20{{maps['vanguard']['startup']}}" target="_blank">
-            Load the map ingame</a>
-        </li>
-      </ol>
+  <div class="install-box">
+    <div class="install">
+      <a ng-click="install = !install">Want to play?</a>
+    </div>
+    <div class="install" ng-show="install">
+      <div>
+        <h3>Instructions</h3>
+        <ol class="instructions">
+          <li>
+            <a href="http://store.steampowered.com/about/" target="_blank">
+              Install and log into the Steam client</a>
+          </li>
+          <li>
+            <a href="steam://install/440" target="_blank">
+              Install Team Fortress 2 (free to play)</a>
+          </li>
+          <li>
+            <a href="steam://run/440//+map%20{{maps['vanguard']['startup']}}" target="_blank">
+              Load the map ingame</a>
+          </li>
+        </ol>
+        <span class="glyphicon glyphicon-chevron-down" ng-click="install = !install"></span>
+      </div>
     </div>
   </div>
 </div>

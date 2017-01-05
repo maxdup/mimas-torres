@@ -320,12 +320,26 @@ body {
         i {color: #404040; }
     }
 
+    .install-box {
+        position: absolute;
+        bottom: 0;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
     .install {
         position: absolute;
         bottom: 0;
         color: white;
         width: 100%;
         padding: 10px;
+        overflow: hidden;
+        &.ng-hide {
+            bottom: -400px;
+        }
+        &.ng-hide-remove, &.ng-hide-add {
+            transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+        }
         & > a {
             float: right;
             padding-right: 20px;
@@ -338,9 +352,15 @@ body {
         div {
             .blurb;
             padding-top: 20px;
-            padding-bottom: 15px;
+            padding-bottom: 30px;
             color: white;
             background: #222222;
+            .glyphicon-chevron-down {
+                position: absolute;
+                top: initial;
+                bottom: 20px;
+                right: 25px;
+            }
         }
         ol {
             color: white;
