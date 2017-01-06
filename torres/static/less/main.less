@@ -306,7 +306,7 @@ body {
         padding: 35px 45px 25px 25px;
         &.box-w2 {
             padding-top: 25px;
-            h2 { margin-bottom: 0;}
+            h2 { margin-bottom: 0; }
         }
         img {
             margin-top: -75px;
@@ -317,7 +317,16 @@ body {
             margin: 10px 0;
             padding-top: 5px;
         }
-        i {color: #404040; }
+        i { color: #404040; }
+    }
+    .blurb-wrap {
+        height: 100%;
+        overflow: auto;
+    }
+    .play {
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .install-box {
@@ -333,7 +342,6 @@ body {
         color: white;
         width: 100%;
         padding: 10px;
-        overflow: hidden;
         &.ng-hide {
             bottom: -400px;
         }
@@ -342,7 +350,8 @@ body {
         }
         & > a {
             float: right;
-            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-right: 25px;
             cursor: pointer;
             color: white;
             font-size: 2.28rem;
@@ -356,6 +365,7 @@ body {
             color: white;
             background: #222222;
             .glyphicon-chevron-down {
+                cursor: pointer;
                 position: absolute;
                 top: initial;
                 bottom: 20px;
