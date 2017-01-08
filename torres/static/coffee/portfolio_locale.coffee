@@ -2,6 +2,11 @@ app = angular.module('folio.Locale', ['pascalprecht.translate'])
 
 app.config(['$translateProvider', ($translateProvider) ->
   $translateProvider.translations('en', {
+    #nav
+    'nav-commercial': 'Commercial work'
+    'nav-hobby': 'Hobby projects'
+    'nav-code': '++'
+    'nav-contact': 'contact'
     #frontpage
     'welcome': 'Welcome to my portfolio!'
     'intro' : "Hi, I'm Maxime. Some will say I'm a designer, others will call me a software developer. Truth is, I'm just a builder; I like to make things. My favorite thing is when I get to make things that other people can experience. This is what I'm all about. My infatuation with crafting experiences is what got me into level design. The Team Fortress 2 community has been my testbed of choice for many different design experiments but also a phenomenal place to iterate on gameplay ideas and develop great experiences. It's where I got my start as a level designer... it's where the story began!"
@@ -22,6 +27,11 @@ app.config(['$translateProvider', ($translateProvider) ->
     'address' : '1981, Tillemont street'
   })
   $translateProvider.translations('fr', {
+    #nav
+    'nav-commercial': 'Commercial work'
+    'nav-hobby': 'Projets personnels'
+    'nav-code': '++'
+    'nav-contact': 'contact'
     #frontpage
     'welcome': 'Bienvenu sur mon portfolio!'
     'intro' : "Hi, I'm Maxime. Some will say I'm a designer, others will call me a software developer. Truth is, I'm just a builder; I like to make things. My favorite thing is when I get to make things that other people can experience. This is what I'm all about. My infatuation with crafting experiences is what got me into level design. The Team Fortress 2 community has been my testbed of choice for many different design experiments but also a phenomenal place to iterate on gameplay ideas and develop great experiences. It's where I got my start as a level designer... it's where the story began!"

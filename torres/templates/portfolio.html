@@ -52,17 +52,7 @@
       <div class="page-centering">
         <div class="page-background"></div>
         <div class="page">
-          <nav>
-            <div class="main-decorator">Level Designer</div>
-            <a class="main" href="#/home">Maxime Dupuis</a> |
-            <a href="#/commercial" ng-class="{ active: isActive('/commercial')}">Commercial work</a> |
-            <a href="#/hobby" ng-class="{ active: isActive('/hobby')}">Hobby projects</a> |
-            <a href="#/code" ng-class="{ active: isActive('/code')}">++</a> |
-            <a href="#/contact" ng-class="{ active: isActive('/contact')}">Contact</a>
-            |
-            <a ng-click="translate('en')">en</a> |
-            <a ng-click="translate('fr')">fr</a> |
-          </nav>
+          <div ng-include="'static/partials/nav.html'"></div>
           <div class="content">
             <div class="scrollbox">
               <div ng-view ng-class="{ reverse: reverse}" class="scrollbox-padded view"></div>

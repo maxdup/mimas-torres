@@ -6,6 +6,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
   $scope.translate = (lang) ->
     $scope.active_lang = lang
     $translate.use(lang)
+  $scope.active_lang = $translate.use()
 
   camera = null
   scene = null

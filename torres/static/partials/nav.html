@@ -1,0 +1,16 @@
+<nav>
+  <div class="main-decorator">Level Designer</div>
+  <a class="main" href="#/home">Maxime Dupuis</a> |
+  <a href="#/commercial" ng-class="{ active: isActive('/commercial')}">
+    {{'nav-commercial' | translate}}</a> |
+  <a href="#/hobby" ng-class="{ active: isActive('/hobby')}">
+    {{'nav-hobby' | translate}}</a> |
+  <a href="#/code" ng-class="{ active: isActive('/code')}">
+    {{'nav-code' | translate}}</a> |
+  <a href="#/contact" ng-class="{ active: isActive('/contact')}">
+    {{'nav-contact' | translate}}</a>
+  <div class="lang">
+    <a ng-class="{active: active_lang == 'en'}" ng-click="translate('en')">En</a> |
+    <a ng-class="{active: active_lang == 'fr'}" ng-click="translate('fr')">Fr</a>
+  </div>
+</nav>
