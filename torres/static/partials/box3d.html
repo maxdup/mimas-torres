@@ -2,5 +2,6 @@
   <div id="{{maps[map]['targetid']}}" anim="maps[map]['mdlshow']"
        class="box-3d" ng-class="{'box-click': !maps[map]['mdlshow']}"
        ng-click="openmodel()">
+    <img ng-if="!maps[map]['mdlshow']" align="center" src="static/images/icons-3d.png"></img>
   </div>
 </div>

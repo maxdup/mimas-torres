@@ -273,6 +273,26 @@ body {
             .box-hx;
             transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
         }
+        img{
+            display: block;
+            margin: auto;
+            height:100%;
+            width: auto;
+        }
+    }
+
+    .box-360 {
+        cursor: pointer;
+        img{
+            display: block;
+            margin: auto;
+            height:100%;
+            width: auto;
+        }
+        &:hover {
+            background: #202020;
+            border: 2px solid black;
+        }
     }
 
 
@@ -419,19 +439,6 @@ body {
         }
     }
 
-    .v360 {
-        cursor: pointer;
-        img{
-            display: block;
-            margin: auto;
-            height:100%;
-            width: auto;
-        }
-        &:hover {
-            background: #202020;
-            border: 2px solid black;
-        }
-    }
     .box-click {
         cursor: pointer;
         border: 2px solid black;
