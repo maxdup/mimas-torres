@@ -33,7 +33,9 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     }).then((modal) ->
       $scope.modal = modal
       $scope.modalactive = true
-      modal.scope.image = image)
+      modal.scope.image = image
+      modal.close.then((result) ->
+        $scope.modalactive = false))
 
   $scope.viewcarouselmodal = (id='')->
     ModalService.showModal({
@@ -47,6 +49,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       overlay = document.getElementById("overlay")
       overlay.appendChild(carousel)
       modal.close.then((result) ->
+        $scope.modalactive = false
         boxcarousel.appendChild(carousel)
       ))
 
