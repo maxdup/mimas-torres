@@ -1,0 +1,35 @@
+<div class="install-box">
+  <div class="blurb">
+    <img src="{{maps[map]['title']}}"></img>
+    <p>Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.
+    </p>
+  </div>
+  <div class="install">
+    <a class="play" ng-click="install = !install">Want to play?</a>
+  </div>
+  <div class="install" ng-show="install">
+    <div>
+      <h3>Instructions</h3>
+      <ol class="instructions">
+        <li>
+          <a href="http://store.steampowered.com/about/" target="_blank">
+            Install and log into the Steam client</a>
+        </li>
+        <li>
+          <a href="steam://install/440" target="_blank">
+            Install Team Fortress 2 (free to play)</a>
+        </li>
+        <li ng-if="maps[map]['level'] == 0">
+          <a href="steam://url/CommunityFilePage/{{maps[map]['workid']}}" target="_blank">
+            Install The map by subscribing on the workshop</a>
+        </li>
+        <li>
+          <a href="steam://run/440//+map%20workshop%2f{{maps[map]['workid']}}" target="_blank">
+            Load the map ingame</a>
+          <span class="glyphicon glyphicon glyphicon-exclamation-sign"></span>
+        </li>
+      </ol>
+      <span class="glyphicon glyphicon-chevron-down" ng-click="install = !install"></span>
+    </div>
+  </div>
+</div>

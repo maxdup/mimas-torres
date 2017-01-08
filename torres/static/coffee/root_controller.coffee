@@ -31,8 +31,9 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       mdlurl: 'static/models/hadal.obj',
       targetid: 'vanguard3d',
       mdlshow: false,
-      startup: 'cp_vanguard',
+      workid: 'cp_vanguard',
       level: 1,
+      title: 'static/images/vanguard/vanguard.png',
       images: [
         { image: 'static/images/vanguard/cp_vanguard_rc60.jpg'},
         { image: 'static/images/vanguard/cp_vanguard_rc61.jpg'},
@@ -48,8 +49,9 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       mdlurl: 'static/models/hadal.obj',
       targetid: 'hadal3d',
       mdlshow: false,
-      startup: "workshop%2f804251853",
+      workid: "804251853",
       level: 0,
+      title: 'static/images/hadal/hadal.png',
       images: [
         { image: 'static/images/hadal/cp_hadal_b130.jpg'},
         { image: 'static/images/hadal/cp_hadal_b131.jpg'},
@@ -65,8 +67,9 @@ angular.module('folio.rootController', ['ui.bootstrap'])
       mdlurl: 'static/models/occult.obj',
       targetid: 'occult3d',
       mdlshow: false,
-      startup: "workshop%2f468770640",
+      workid: "468770640",
       level: 0,
+      title: 'static/images/occult/occult.png',
       images: [
         { image: 'static/images/occult/koth_occult_rc40.jpg'},
         { image: 'static/images/occult/koth_occult_rc41.jpg'},
@@ -79,8 +82,9 @@ angular.module('folio.rootController', ['ui.bootstrap'])
     effigy: {
       order: 3,
       partial: "static/partials/effigy.html",
-      startup: "workshop%2f543841027",
+      workid: "543841027",
       level: 0,
+      title: 'static/images/effigy/effigy.png',
       images: [
         { image: 'static/images/effigy/pl_effigy_rc20.jpg'},
         { image: 'static/images/effigy/pl_effigy_rc21.jpg'},
@@ -255,4 +259,14 @@ angular.module('folio.rootController', ['ui.bootstrap'])
         scope.$emit('init3d', scope.map)
       clearCanvas = ->
         element.find('canvas').remove()
+  })
+
+.directive("boxMain", ->
+  {
+    restrict: 'E',
+    templateUrl: 'static/partials/boxmain.html',
+    scope: {
+      map: '@',
+      maps: '='
+      }
   })
