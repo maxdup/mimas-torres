@@ -5,27 +5,27 @@
     </p>
   </div>
   <div class="install">
-    <a class="play" ng-click="install = !install">Want to play?</a>
+    <a class="play" ng-click="install = !install">{{'wanttoplay' | translate}}</a>
   </div>
   <div class="install" ng-show="install">
     <div>
-      <h3>Instructions</h3>
+      <h3>{{'instructions' | translate}}</h3>
       <ol class="instructions">
         <li>
           <a href="http://store.steampowered.com/about/" target="_blank">
-            Install and log into the Steam client</a>
+            {{'install-1' | translate}}</a>
         </li>
         <li>
           <a href="steam://install/440" target="_blank">
-            Install Team Fortress 2 (free to play)</a>
+            {{'install-2' | translate}}</a>
         </li>
         <li ng-if="maps[map]['level'] == 0">
           <a href="steam://url/CommunityFilePage/{{maps[map]['workid']}}" target="_blank">
-            Install The map by subscribing on the workshop</a>
+            {{'install-3' | translate}}</a>
         </li>
         <li>
           <a href="steam://run/440//+map%20workshop%2f{{maps[map]['workid']}}" target="_blank">
-            Load the map ingame</a>
+            {{'install-4' | translate}}</a>
           <span class="glyphicon glyphicon glyphicon-exclamation-sign"></span>
         </li>
       </ol>

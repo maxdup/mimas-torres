@@ -1,7 +1,11 @@
 angular.module('folio.rootController', ['ui.bootstrap'])
 
 .controller 'RootController',
-($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout) ->
+($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout, $translate) ->
+
+  $scope.translate = (lang) ->
+    $scope.active_lang = lang
+    $translate.use(lang)
 
   camera = null
   scene = null

@@ -19,6 +19,8 @@
   <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
   <script src="static/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="static/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+  <script src="static/bower_components/angular-translate/angular-translate.min.js"></script>
+
 
   <script src="static/bower_components/three.js/build/three.min.js"></script>
   <script src="static/bower_components/three.js/examples/js/loaders/OBJLoader.js"></script>
@@ -38,6 +40,7 @@
   <script src="static/js/folioapp.js"></script>
   <script src="static/js/root_controller.js"></script>
   <script src="static/js/portfolio_controller.js"></script>
+  <script src="static/js/portfolio_locale.js"></script>
 </head>
 
 <body ng-controller="RootController" style="overflow:hidden;">
@@ -56,6 +59,9 @@
             <a href="#/hobby" ng-class="{ active: isActive('/hobby')}">Hobby projects</a> |
             <a href="#/code" ng-class="{ active: isActive('/code')}">++</a> |
             <a href="#/contact" ng-class="{ active: isActive('/contact')}">Contact</a>
+            |
+            <a ng-click="translate('en')">en</a> |
+            <a ng-click="translate('fr')">fr</a> |
           </nav>
           <div class="content">
             <div class="scrollbox">

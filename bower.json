@@ -25,6 +25,7 @@
     "isotope": "^3.0.1",
     "isotope-masonry-horizontal": "^2.0.0",
     "reset-css": "^2.2.0",
-    "threejs": "*"
+    "threejs": "*",
+    "angular-translate": "^2.13.1"
   }
 }
