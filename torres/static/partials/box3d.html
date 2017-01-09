@@ -1,7 +1,24 @@
-<div class="box box-wrap" anim="maps[map]['mdlshow']">
-  <div id="{{maps[map]['targetid']}}" anim="maps[map]['mdlshow']"
-       class="box-3d" ng-class="{'box-click': !maps[map]['mdlshow']}"
-       ng-click="openmodel()">
-    <img ng-if="!maps[map]['mdlshow']" align="center" src="static/images/icons-3d.png"></img>
+<div class="box box-wrap">
+  <div id="{{maps[map]['targetid']}}"
+       class="box-3d" ng-class="{'box-click': !maps[map]['mdlshow']}">
+    <div ng-if="!maps[map]['mdlshow']" ng-click="openmodel()">
+      <img align="center" src="static/images/icons-3d.png" class="icon"></img>
+    </div>
+    <span class="glyphicon glyphicon-remove close"
+          ng-show="maps[map]['mdlshow']" ng-click="closemodels()"></span>
+    <div class="controls" ng-show="maps[map]['mdlshow']">
+      <div class="controls" ng-show="!cshow">
+        <div class="controls3d" >
+          <span class="glyphicon glyphicon-info-sign" ng-mouseenter="cshow=true"/>
+        </div>
+      </div>
+      <div class="controls" ng-show="cshow">
+        <div class="controls3d" ng-mouseleave="cshow=false">
+          <img src="static/images/icons-lcrot.png"/>
+          <img src="static/images/icons-mczoom.png"/>
+          <img src="static/images/icons-rcpan.png"/>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

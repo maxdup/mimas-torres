@@ -59,9 +59,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       $scope.modal.scope.close()
       event.preventDefault()
 
-  $scope.openmodel = (map='') ->
-    $scope.maps[map]['mdlshow'] = false
-
   camera = null
   controls = null
   scene = null

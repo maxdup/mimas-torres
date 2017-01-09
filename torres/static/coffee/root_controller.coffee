@@ -242,9 +242,13 @@ angular.module('folio.rootController', ['ui.bootstrap'])
 
     link: (scope, element) ->
       scope.$emit('isotopeReload')
-      scope.openmodel = ->
+      scope.closemodels = ->
         for k, v of scope.maps
           v['mdlshow'] = false
+        return
+
+      scope.openmodel = ->
+        scope.closemodels()
         scope.maps[scope.map]['mdlshow'] = true
         return
 
