@@ -34,10 +34,15 @@ app.config(['$translateProvider', ($translateProvider) ->
     'contactme': 'Contact me!'
     'languages': 'in french or english'
     'address' : '1981, Tillemont street'
+    'status': 'Status'
+    'available': 'Available'
+    'unavailable': 'Unavailable'
+    'hire': 'for hire'
+    'contract': 'for contract'
   })
   $translateProvider.translations('fr', {
     #nav
-    'nav-commercial': 'Commercial work'
+    'nav-commercial': 'Travail commercial'
     'nav-hobby': 'Projets personnels'
     'nav-code': '++'
     'nav-contact': 'contact'
@@ -45,12 +50,12 @@ app.config(['$translateProvider', ($translateProvider) ->
     'welcome': 'Bienvenu sur mon portfolio!'
     'intro' : "Hi, I'm Maxime. Some will say I'm a designer, others will call me a software developer. Truth is, I'm just a builder; I like to make things. My favorite thing is when I get to make things that other people can experience. This is what I'm all about. My infatuation with crafting experiences is what got me into level design. The Team Fortress 2 community has been my testbed of choice for many different design experiments but also a phenomenal place to iterate on gameplay ideas and develop great experiences. It's where I got my start as a level designer... it's where the story began!"
     #maps
-    'wanttoplay': 'vous voulez y jouer?'
+    'wanttoplay': 'Vous voulez y jouer?'
     'instructions': 'Instructions'
     'install-1': 'Installez et logez vous dans le client Steam'
     'install-2': 'Installez Team Fortress 2 (gratuit)'
     'install-3': 'Installez le niveau en vous abonnant sur le workshop'
-    'install-4': 'chargez le niveau dans le jeu'
+    'install-4': 'Chargez le niveau dans le jeu'
     #contact
     'contact': 'Vous voulez me rejoindre?'
     'contactblurb': "Il y a plusieurs endroits pour me rejoindre, vous trouverez la majorité d'entre eux ici."
@@ -59,6 +64,11 @@ app.config(['$translateProvider', ($translateProvider) ->
     'contactme': 'Contactez moi!'
     'languages': 'en français ou en anglais'
     'address' : '1981, rue Tillemont'
+    'status': 'Statut'
+    'available': 'Disponible'
+    'unavailable': 'Non Disponible'
+    'hire': 'pour emplois'
+    'contract': 'pour contrat'
   })
   $translateProvider.preferredLanguage('en')
 ])
