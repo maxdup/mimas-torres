@@ -3,6 +3,7 @@ app = angular.module('folio.Locale', ['pascalprecht.translate'])
 app.config(['$translateProvider', ($translateProvider) ->
   $translateProvider.translations('en', {
     #nav
+    'nav-title': 'Level Designer'
     'nav-commercial': 'Commercial work'
     'nav-hobby': 'Hobby projects'
     'nav-code': '++'
@@ -42,6 +43,7 @@ app.config(['$translateProvider', ($translateProvider) ->
   })
   $translateProvider.translations('fr', {
     #nav
+    'nav-title': 'Concepteur de niveau'
     'nav-commercial': 'Travail commercial'
     'nav-hobby': 'Projets personnels'
     'nav-code': '++'
@@ -56,6 +58,10 @@ app.config(['$translateProvider', ($translateProvider) ->
     'install-2': 'Installez Team Fortress 2 (gratuit)'
     'install-3': 'Installez le niveau en vous abonnant sur le workshop'
     'install-4': 'Chargez le niveau dans le jeu'
+    #quotes
+    'toughbreak': 'Ajouter à Team Fortress 2 avec la mise à jour '
+    'toughbreak2': '"Tough Break"'
+    'pcgamer': '"Great TF2 community map"'
     #contact
     'contact': 'Vous voulez me rejoindre?'
     'contactblurb': "Il y a plusieurs endroits pour me rejoindre, vous trouverez la majorité d'entre eux ici."
