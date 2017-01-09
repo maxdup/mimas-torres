@@ -1,38 +1,5 @@
 <!--main-->
-<div class="box box-main">
-  <div class="install-box">
-    <div class="blurb">
-      <img src="static/images/vanguard/vanguard.png"></img>
-      <p>
-        Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.
-      </p>
-    </div>
-    <div class="install">
-      <a class="play" ng-click="install = !install">Want to play?</a>
-    </div>
-    <div class="install" ng-show="install">
-      <div>
-        <h3>Instructions</h3>
-        <ol class="instructions">
-          <li>
-            <a href="http://store.steampowered.com/about/" target="_blank">
-              Install and log into the Steam client</a>
-          </li>
-          <li>
-            <a href="steam://install/440" target="_blank">
-              Install Team Fortress 2 (free to play)</a>
-          </li>
-          <li>
-            <a href="steam://run/440//+map%20{{maps['vanguard']['workid']}}" target="_blank">
-              Load the map ingame</a>
-            <span class="glyphicon glyphicon glyphicon-exclamation-sign"></span>
-          </li>
-        </ol>
-        <span class="glyphicon glyphicon-chevron-down" ng-click="install = !install"></span>
-      </div>
-    </div>
-  </div>
-</div>
+<box-main class="box box-main" map="vanguard" maps="maps"> </box-main>
 
 <!--3D-->
 <box3d map="vanguard" maps="maps"/>
@@ -53,7 +20,7 @@
 <!--update page-->
 <a class="box box-w2 box-click" href="http://www.teamfortress.com/toughbreak/" target="_blank">
   <div class="quote">
-    Added to Team Fortress 2 as part of the <b>"Tough Break" update</b>
+    {{'toughbreak' | translate}}<b>{{'toughbreak2' | translate}}</b>
     <div class="date">(17/12/2015)</div>
   </div>
 </a>

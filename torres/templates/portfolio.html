@@ -46,6 +46,19 @@
 <body ng-controller="RootController" style="overflow:hidden;">
   <div id="portfolio">
     <div class="container-pullback" ng-show="v360focus" ng-click="v360()"></div>
+    <div class="controls360" ng-show="v360focus">
+      <div class="controls360" ng-show="!cshow">
+        <div class="controls" ng-mouseenter="cshow=true">
+          <span class="glyphicon glyphicon-info-sign"/>
+        </div>
+      </div>
+      <div class="controls360" ng-show="cshow">
+        <div class="controls" ng-mouseleave="cshow=false">
+          <img src="static/images/icons-lcpan.png"/>
+          <img src="static/images/icons-mczoom.png"/>
+        </div>
+      </div>
+    </div>
     <div id="curtain" class="container-curtain" ng-hide="show"></div>
     <div class="container" ng-hide="v360focus">
       <div class="page-margin" ng-click="v360()"></div>

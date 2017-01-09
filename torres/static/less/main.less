@@ -58,6 +58,38 @@ body {
         opacity: 0;
     }
 
+    .controls360 {
+        position: absolute;
+        margin: auto;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        opacity: 1;
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+        .controls {
+            display: inline-block;
+            bottom: 0;
+            max-width: 20%;
+            min-width: 75px;
+            min-height: 75px;
+            color: white;
+            font-size: 50px;
+            span {
+                opacity: 0.5;
+                min-height: 75px;
+            }
+        }
+        img {
+            width: 47%;
+            height: auto;
+        }
+        &.ng-hide {
+            opacity: 0;
+            bottom: -200px;
+        }
+    }
+
+
     .container-pullback {
         position: absolute;
         height: 300px;

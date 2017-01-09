@@ -17,6 +17,15 @@ app.config(['$translateProvider', ($translateProvider) ->
     'install-2': 'Install Team Fortress 2 (free to play)'
     'install-3': 'Install The map by subscribing on the workshop'
     'install-4': 'Load the map ingame'
+    #blurbs
+    'vanguard': 'Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.'
+    'occult': 'Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.'
+    'hadal': 'Lorem Ipsum'
+    'effigy': 'Lorem Ipsum'
+    #quotes
+    'toughbreak': 'Added to Team Fortress 2 as part of the '
+    'toughbreak2': '"Tough Break" update'
+    'pcgamer': '"Great TF2 community map"'
     #contact
     'contact' : 'Want to get in touch?'
     'contactblurb': "There's a lot of places where you can reach me, you'll find most of them here."
@@ -48,7 +57,7 @@ app.config(['$translateProvider', ($translateProvider) ->
     'contacttrue' : "(Parcontre, le vrai chemin vers mon coeur, c'est par email)"
     'findme': 'Trouvez moi sur le web!'
     'contactme': 'Contactez moi!'
-    'languages': 'en francais ou en anglais'
+    'languages': 'en français ou en anglais'
     'address' : '1981, rue Tillemont'
   })
   $translateProvider.preferredLanguage('en')
