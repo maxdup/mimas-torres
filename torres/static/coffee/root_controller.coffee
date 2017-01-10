@@ -1,12 +1,16 @@
-angular.module('folio.rootController', ['ui.bootstrap'])
+angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
 
 .controller 'RootController',
-($scope, $location, $http, $route, $routeParams, $rootScope, $window, $timeout, $translate) ->
+($scope, $location, $http, $route, $routeParams, $rootScope, $window, $cookies, $timeout, $translate) ->
 
   $scope.translate = (lang) ->
     $scope.active_lang = lang
     $translate.use(lang)
-  $scope.active_lang = $translate.use()
+    $cookies['lang'] = lang
+  if $cookies['lang']
+    $scope.translate($cookies['lang'])
+  else
+    $scope.active_lang = $translate.use()
 
   camera = null
   scene = null
