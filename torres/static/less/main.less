@@ -360,19 +360,12 @@ body {
     .contact {
         color: white;
         padding: 25px;
-        ul { padding-left: 5px; }
-    }
-    .status {
-        color: white;
-        padding: 25px;
         ul {
-            font-size: 20px;
-            padding-top: 5px;
             padding-left: 15px;
-            line-height: 26px;
+            padding-bottom: 12px;
         }
-        b { color: #20ff40; }
-        b.not{ color: #ff3010; }
+        .available { color: #20ff40; }
+        .unavailable { color: #ff3010; }
     }
     .links {
         padding: 25px;
@@ -505,12 +498,9 @@ body {
             padding-top: 2px;
         }
     }
-    .photo {
-        img {
-            height: auto;
-            width: 100%;
-            margin-top:-36px;
-        }
+    .box-photo {
+        height: 100%;
+        max-height: 590px;
     }
 
     .box-click {
@@ -624,7 +614,7 @@ body {
         margin: 1.14rem 0 0.912rem 0; }
 
     h5 {
-        font-size: 1.64rem;
+        font-size: 19px;
         line-height: 110%;
         margin: 0.82rem 0 0.656rem 0; }
 

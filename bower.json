@@ -26,6 +26,8 @@
     "isotope-masonry-horizontal": "^2.0.0",
     "reset-css": "^2.2.0",
     "threejs": "*",
-    "angular-translate": "^2.13.1"
+    "angular-translate": "^2.13.1",
+    "imagefill": "*",
+    "imagesloaded": "^4.1.1"
   }
 }

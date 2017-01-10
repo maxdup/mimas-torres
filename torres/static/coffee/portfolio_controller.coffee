@@ -21,6 +21,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   $scope.$on 'isotopeLayout', (event, next, current) ->
     $scope.layout()
 
+  $('.box-photo').imagefill({runOnce:true});
 
   $(".content").mousewheel((event, delta) ->
     this.scrollLeft -= (delta * 10)

@@ -35,11 +35,12 @@ app.config(['$translateProvider', ($translateProvider) ->
     'contactme': 'Contact me!'
     'languages': 'in french or english'
     'address' : '1981, Tillemont street'
-    'status': 'Status'
+    'status': 'Status:'
     'available': 'Available'
     'unavailable': 'Unavailable'
     'hire': 'for hire'
     'contract': 'for contract'
+    'cv': 'Add this one to the pile!'
   })
   $translateProvider.translations('fr', {
     #nav
@@ -70,11 +71,12 @@ app.config(['$translateProvider', ($translateProvider) ->
     'contactme': 'Contactez moi!'
     'languages': 'en français ou en anglais'
     'address' : '1981, rue Tillemont'
-    'status': 'Statut'
+    'status': 'Statut:'
     'available': 'Disponible'
     'unavailable': 'Non Disponible'
     'hire': 'pour emplois'
     'contract': 'pour contrat'
+    'cv': 'Un autre pour la pile!'
   })
   $translateProvider.preferredLanguage('en')
 ])
