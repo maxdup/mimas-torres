@@ -102,7 +102,12 @@ angular.module('folio.rootController', ['ui.bootstrap'])
   }
 
   $scope.change360 = (map) ->
+    $scope.controlsGlimpse = true
     $rootScope.$broadcast('changebg', map)
+    $timeout( hidecontrols , 2000)
+
+  hidecontrols = ->
+    $scope.controlsGlimpse = false
 
   $scope.$on('changebg', (event, map) ->
     if (currmap != map)
@@ -230,7 +235,7 @@ angular.module('folio.rootController', ['ui.bootstrap'])
   $scope.close = close
 ])
 
-.directive("box3d", ($animate) ->
+.directive("box3d", ($animate, $timeout) ->
   {
     restrict: 'E',
     templateUrl: 'static/partials/box3d.html',
@@ -247,9 +252,15 @@ angular.module('folio.rootController', ['ui.bootstrap'])
           v['mdlshow'] = false
         return
 
+
+      hidecontrols = ->
+        scope.controlsGlimpse3d = false
+
       scope.openmodel = ->
         scope.closemodels()
         scope.maps[scope.map]['mdlshow'] = true
+        scope.controlsGlimpse3d = true
+        $timeout( hidecontrols , 2000)
         return
 
       scope.$watch("maps."+scope.map+".mdlshow", (show, oldShow) ->
