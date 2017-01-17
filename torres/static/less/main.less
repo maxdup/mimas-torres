@@ -254,6 +254,25 @@ body {
         .box-wx;
         height: 100%;
         overflow: auto;
+        .peak {
+            height: 300px;
+            width: 100%;
+            position: absolute;
+            .gradient(rgba(0,0,0,1), rgba(0,0,0,0))
+        }
+        .img-peak {
+            height: 300px;
+            width: 100%;
+            position: absolute;
+            overflow: hidden;
+            bottom: 0;
+            img {
+                width:220%;
+            }
+        }
+        .peaked {
+            position: absolute;
+        }
     }
 
     .box-welcome {
@@ -427,6 +446,26 @@ body {
         height: 100%;
         width: 100%;
     }
+    .git {
+        float: right;
+        padding-bottom: 10px;
+        padding-right: 25px;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        line-height: 110%;
+        margin: 1.14rem 0 0.912rem 0;
+        a {
+            text-decoration: underline;
+            color: white;
+        }
+        img {
+            margin: 5px;
+            height: 20px;
+            width: 20px;
+        }
+    }
+
     .install {
         position: absolute;
         bottom: 0;
@@ -806,3 +845,12 @@ body {
 }
 
 span.clear { clear: right; display: block; }
+
+.gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor, @endColor);
+    background: -o-linear-gradient(top, @startColor, @endColor);
+}
