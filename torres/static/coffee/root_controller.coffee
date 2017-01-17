@@ -68,7 +68,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
         { image: 'static/images/hadal/cp_hadal_b133.jpg'},
         { image: 'static/images/hadal/cp_hadal_b134.jpg'},
         ],
-      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+      panorama: 'static/images/hadal/cp_hadal360.jpg',
     },
     occult: {
       order: 1,
