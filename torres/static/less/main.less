@@ -237,6 +237,39 @@ body {
             height: 90%;
             max-height: 540px;
         }
+        .img-peak {
+            height: 300px;
+            width: 100%;
+            position: absolute;
+            overflow: hidden;
+            bottom: 0;
+            img {
+                width:220%;
+            }
+            .peak {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                .gradient(rgba(0,0,0,1), rgba(0,0,0,0.3))
+            }
+        }
+        .img-peak-up{
+            .img-peak;
+            bottom: initial;
+            top: 0;
+            height: 120px;
+            img {
+                margin-left: -466px;
+                margin-top: -14px;
+            }
+            .peak {
+                .gradient(rgba(0,0,0,0.3), rgba(0,0,0,1))
+            }
+        }
+        .peaked {
+            position: absolute;
+        }
+
     }
 
     .box-w1 { width: 290px; }
@@ -254,25 +287,6 @@ body {
         .box-wx;
         height: 100%;
         overflow: auto;
-        .peak {
-            height: 300px;
-            width: 100%;
-            position: absolute;
-            .gradient(rgba(0,0,0,1), rgba(0,0,0,0))
-        }
-        .img-peak {
-            height: 300px;
-            width: 100%;
-            position: absolute;
-            overflow: hidden;
-            bottom: 0;
-            img {
-                width:220%;
-            }
-        }
-        .peaked {
-            position: absolute;
-        }
     }
 
     .box-welcome {
