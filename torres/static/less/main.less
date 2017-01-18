@@ -460,26 +460,6 @@ body {
         height: 100%;
         width: 100%;
     }
-    .git {
-        float: right;
-        padding-bottom: 10px;
-        padding-right: 25px;
-        cursor: pointer;
-        color: white;
-        font-size: 16px;
-        line-height: 110%;
-        margin: 1.14rem 0 0.912rem 0;
-        a {
-            text-decoration: underline;
-            color: white;
-        }
-        img {
-            margin: 5px;
-            height: 20px;
-            width: 20px;
-        }
-    }
-
     .install {
         position: absolute;
         bottom: 0;
@@ -502,7 +482,7 @@ body {
             line-height: 110%;
             margin: 1.14rem 0 0.912rem 0;
         }
-        div {
+        &>div {
             .blurb;
             padding-top: 20px;
             padding-bottom: 30px;
@@ -514,6 +494,9 @@ body {
                 top: initial;
                 bottom: 20px;
                 right: 25px;
+            }
+            .glyphicon-exclamation-sign {
+                cursor: pointer;
             }
         }
         ol {
@@ -531,6 +514,39 @@ body {
         }
         li {
             line-height: 20px;
+        }
+        .popover {
+            h3 {
+                font-size: 15px;
+                margin: 0;
+            }
+            a {
+                font: inherit;
+                color: rgba(0, 0, 0, 0.87);
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+
+
+    .git {
+        float: right;
+        padding-bottom: 10px;
+        padding-right: 25px;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        line-height: 110%;
+        margin: 1.14rem 0 0.912rem 0;
+        a {
+            text-decoration: underline;
+            color: white;
+        }
+        img {
+            margin: 5px;
+            height: 20px;
+            width: 20px;
         }
     }
 

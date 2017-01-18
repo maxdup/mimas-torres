@@ -17,7 +17,13 @@ app.config(['$translateProvider', ($translateProvider) ->
     'install-1': 'Install and log into the Steam client'
     'install-2': 'Install Team Fortress 2 (free to play)'
     'install-3': 'Install The map by subscribing on the workshop'
+    'install-3-warn': 'I\'m only making sure the link opens in the steam client.'
+    'install-3-alt': '-Alternatively, subscribe'
+    'install-3-alt2': 'from your bowser.'
     'install-4': 'Load the map ingame'
+    'install-4-warn': '-This link might not work if the game client is already open'
+    'install-4-alt': '-Alternatively, you can load the map from the main menu with "Start playing", and then "Create server". Find the map you\'re looking for in the dropdown menu and proceed forward.'
+    'install-warn': "-This link may be reported as potentially harmful by your browser. These types of links can indeed be dangerous but there's nothing fishy hidden in this one."
     #blurbs
     'vanguard': 'Initially designed as a control point map for competitive play, Vanguard was an attempt at making a map focused around fast paced gameplay. The design of the map allows it to perform nicely in public play as well as in competitive environments. The goal was to make a map that rewards aggressive gameplay and good positioning. The result is a fast paced and punishing map that often results in a great back and forth game between the opposing teams.'
     'occult': 'Featuring a completely new visual theme, the control point of this map is an old relic with unknown powers. We don’t know why Blue and Red are fighting over it but it looks important! They have no idea what that thing has in store for them however. I consider this map to be one of my finest work for the technical achievement it represents. The map features many special effects of my own including complex animations, particle systems and textures that use source’s shaders at their fullest.'
