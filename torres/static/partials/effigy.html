@@ -10,12 +10,12 @@
 <div class="box box-carousel effigy">
   <span class="glyphicon glyphicon-fullscreen fullscreen" ng-click="viewcarouselmodal('.effigy')"></span>
   <div class="slides_control" id="slides_control">
-    <carousel template-url="static/partials/carousel.html">
-      <slide ng-repeat="slide in maps.effigy.images" active="slide.active">
+    <div uib-carousel active="active" template-url="static/partials/carousel.html">
+      <div uib-slide ng-repeat="slide in maps.effigy.images" index="slide.id">
         <div class="modalable" ng-click="viewcarouselmodal('.effigy')"></div>
         <img ng-src="{{slide.image}}">
-      </slide>
-    </carousel>
+      </div>
+    </div>
   </div>
 </div>
 <div class="box box-separator"/>
