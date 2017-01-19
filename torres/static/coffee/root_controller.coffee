@@ -2,6 +2,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
 
 .controller 'RootController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, $cookies, $timeout, $translate) ->
+  $scope.isNavCollapsed = true
 
   $scope.translate = (lang) ->
     $scope.active_lang = lang
