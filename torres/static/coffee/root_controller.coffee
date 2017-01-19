@@ -7,9 +7,9 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
   $scope.translate = (lang) ->
     $scope.active_lang = lang
     $translate.use(lang)
-    $cookies['lang'] = lang
-  if $cookies['lang']
-    $scope.translate($cookies['lang'])
+    $cookies.put('lang', lang)
+  if $cookies.get('lang')
+    $scope.translate($cookies.get('lang'))
   else
     $scope.active_lang = $translate.use()
 
