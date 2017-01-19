@@ -9,13 +9,13 @@
     <div class="loading" ng-show="maps[map]['mdlshow'] && !loaded">
       <span class="glyphicon glyphicon-cog"></span>
     </div>
-    <div class="controls" ng-show="maps[map]['mdlshow']">
+    <div class="controls" ng-show="maps[map]['mdlshow']" ng-mouseleave="cshow=false">
       <div class="controls" ng-show="!cshow && !controlsGlimpse3d">
         <div class="controls3d" >
           <span class="glyphicon glyphicon-info-sign" ng-mouseenter="cshow=true"/>
         </div>
       </div>
-      <div class="controls" ng-show="cshow || controlsGlimpse3d">
+      <div class="controls" ng-show="cshow || controlsGlimpse3d" ng-mouseleave="cshow=false">
         <div class="controls3d" ng-mouseenter="cshow=true" ng-mouseleave="cshow=false">
           <img src="static/images/icons-lcrot.png"/>
           <img src="static/images/icons-mczoom.png"/>

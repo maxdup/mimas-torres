@@ -141,7 +141,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     controls = new THREE.OrbitControls( camera, renderer.domElement )
     controls.enableDamping = true
     controls.dampingFactor = 0.1
-    controls.enableZoom = false
+    controls.enableZoom = true
 
     canvas = angular.element(renderer.domElement)
     wrapcontainer = angular.element(container)
