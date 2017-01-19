@@ -118,6 +118,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       object.position.y = - 95
 
       scene.add( object )
+      $scope.$broadcast('mdlloaded')
     , null, null)
 
 

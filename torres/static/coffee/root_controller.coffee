@@ -258,6 +258,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
     link: (scope, element) ->
       scope.$emit('isotopeReload')
       scope.closemodels = ->
+        scope.loaded = false
         for k, v of scope.maps
           v['mdlshow'] = false
         return
@@ -268,9 +269,15 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
       scope.openmodel = ->
         scope.closemodels()
         scope.maps[scope.map]['mdlshow'] = true
+        return
+
+      scope.$on('mdlloaded', (event) ->
         scope.controlsGlimpse3d = true
+        scope.loaded = true
+        scope.$apply()
         $timeout( hidecontrols , 2000)
         return
+      )
 
       scope.$watch("maps."+scope.map+".mdlshow", (show, oldShow) ->
         if (!show)
