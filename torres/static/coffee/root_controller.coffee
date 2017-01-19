@@ -137,8 +137,11 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
     if front
       $scope.mapsQueue.unshift(front)
 
+  $scope.v360inControl = false
   $scope.v360 = ->
     $scope.v360focus = !$scope.v360focus
+    if !$scope.v360focus
+      $scope.v360inControl = false
 
   routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
 
@@ -200,6 +203,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
 
   onDocumentMouseMove = (event) ->
     if isUserInteracting and $scope.v360focus
+      $scope.v360inControl = true
       lon = (onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
       lat = (event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
 
@@ -213,8 +217,8 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
     $scope.update()
 
   $scope.update = ->
-    lon += 0.03;
-
+    if !$scope.v360inControl
+      lon += 0.03;
     lat = Math.max( - 85, Math.min( 85, lat ) )
     phi = THREE.Math.degToRad( 90 - lat )
     theta = THREE.Math.degToRad( lon )
@@ -223,6 +227,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
     camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta )
 
     camera.lookAt( camera.target )
+
     renderer.render( scene, camera )
 
   $scope.init()
@@ -255,7 +260,6 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
         for k, v of scope.maps
           v['mdlshow'] = false
         return
-
 
       hidecontrols = ->
         scope.controlsGlimpse3d = false
