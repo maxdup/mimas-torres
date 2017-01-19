@@ -61,6 +61,7 @@ body {
 
     .controls {
         position: absolute;
+        min-height: 90px;
         margin: auto;
         bottom: 0;
         width: 100%;
@@ -73,6 +74,7 @@ body {
             max-width: 20%;
             min-width: 75px;
             min-height: 75px;
+            margin-top: 10px;
             color: white;
             font-size: 50px;
             span {
@@ -104,12 +106,22 @@ body {
     .container-pullback {
         position: absolute;
         height: 300px;
-        width: 20px;
+        width: 100px;
         top: 0; bottom: 0; right: 0; left: 0;
         margin: auto;
         margin-right: 20px;
-        background: #909090;
+        font-size: 300px;
+        color: white;
         transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+        .glyphicon {
+            opacity: 0.5;
+            cursor: pointer;
+            margin-left: -100px;
+            .transform(scale(0.4,1));
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
     .container-pullback.ng-hide {
         margin-right: 100%;
@@ -887,4 +899,16 @@ span.clear { clear: right; display: block; }
     background: -moz-linear-gradient(top, @startColor, @endColor);
     background: -ms-linear-gradient(top, @startColor, @endColor);
     background: -o-linear-gradient(top, @startColor, @endColor);
+}
+.transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition:    @transition;
+    -ms-transition:     @transition;
+    -o-transition:      @transition;
+}
+.transform(@string){
+    -webkit-transform: @string;
+    -moz-transform:  @string;
+    -ms-transform:  @string;
+    -o-transform:  @string;
 }
