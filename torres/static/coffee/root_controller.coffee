@@ -2,7 +2,6 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
 
 .controller 'RootController',
 ($scope, $location, $http, $route, $routeParams, $rootScope, $window, $cookies, $timeout, $translate) ->
-  $scope.isNavCollapsed = true
 
   $scope.translate = (lang) ->
     $scope.active_lang = lang
@@ -147,6 +146,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
   routes = ["/home","/commercial","/hobby/:map?","/code","/contact"]
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
+    $scope.isNavCollapsed = true
     if !current
       return
     for k, v of $scope.maps
