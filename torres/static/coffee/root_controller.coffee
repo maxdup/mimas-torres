@@ -147,7 +147,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
 
   $rootScope.$on '$routeChangeStart', (event, next, current) ->
     $scope.isNavCollapsed = true
-    if !current
+    if !current || !current['$$route']
       return
     for k, v of $scope.maps
       v['mdlshow'] = false

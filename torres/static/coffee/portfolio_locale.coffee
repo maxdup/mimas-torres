@@ -85,4 +85,5 @@ app.config(['$translateProvider', ($translateProvider) ->
     'cv': 'Un autre pour la pile!'
   })
   $translateProvider.preferredLanguage('en')
+  $translateProvider.useSanitizeValueStrategy('escapeParameters')
 ])
