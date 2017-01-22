@@ -17,7 +17,7 @@ app.config(['$translateProvider', ($translateProvider) ->
     'install-1': 'Install and log into the Steam client'
     'install-2': 'Install Team Fortress 2 (free to play)'
     'install-3': 'Install The map by subscribing on the workshop'
-    'install-3-warn': 'I\'m only making sure the link opens in the steam client.'
+    'install-3-warn': 'It\'s only to make sure the link opens in the steam client.'
     'install-3-alt': '-Alternatively, subscribe'
     'install-3-alt2': 'from your bowser.'
     'install-4': 'Load the map ingame'
@@ -65,7 +65,13 @@ app.config(['$translateProvider', ($translateProvider) ->
     'install-1': 'Installez et logez vous dans le client Steam'
     'install-2': 'Installez Team Fortress 2 (gratuit)'
     'install-3': 'Installez le niveau en vous abonnant sur le workshop'
+    'install-3-warn': 'I\'m only making sure the link opens in the steam client.'
+    'install-3-alt': '-Alternativement, Abonnez-vous'
+    'install-3-alt2': 'à partir de votre navigateur.'
     'install-4': 'Chargez le niveau dans le jeu'
+    'install-4-warn': '-Ce lien pourrait ne pas fonctionner si le client de jeu est déjà ouvert.'
+    'install-4-alt': '-Alternativement, vous pouvez charger le niveau à partir du menu principale avec "Start playing", puis "Create server". Trouvez le niveau dans le menu déroulant et charger la partie.'
+    'install-warn': "-Ce lien pourrait être reporté comme dangereux par votre navigateur. Ce type de lien peut effectivement être dangereux mais rien ne se cache dans celui-ci."
     'loading': 'Chargement...'
     #quotes
     'toughbreak': 'Ajouter à Team Fortress 2 avec la mise à jour '
