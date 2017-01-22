@@ -236,13 +236,17 @@ body {
     }
     .page-centering {
         position: absolute;
-        max-height: 840px;
         width: 100%;
         top: 2%;
         bottom: 2%;
         right: 0;
         left: 0;
         margin: auto;
+    }
+    @media (min-aspect-ratio: 1/1) {
+        .page-centering {
+            max-height: 840px;
+        }
     }
     .page {
         .page-base;
@@ -486,14 +490,19 @@ body {
             text-align: center;
             display: inline-block;
             span {
+                color: white;
                 margin: auto;
                 position: absolute;
+                font-size: 25px;
+                top: 150px; left: 0; bottom: 0; right: 0;
+                width: 200px;
+                height:40px;
+            }
+            .glyphicon {
                 font-size: 100px;
                 height:100px;
                 width: 100px;
-                color: white;
-                top: 0; left: 0; bottom: 0; right: 0;
-
+                top: 0;
                 -animation: spin 7s infinite linear;
                 -webkit-animation: spin2 7s infinite linear;
 

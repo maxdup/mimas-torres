@@ -8,6 +8,7 @@
           ng-show="maps[map]['mdlshow']" ng-click="closemodels()"></span>
     <div class="loading" ng-show="maps[map]['mdlshow'] && !loaded">
       <span class="glyphicon glyphicon-cog"></span>
+      <span>{{'loading' | translate}}</span>
     </div>
     <div class="controls" ng-show="maps[map]['mdlshow']" ng-mouseleave="cshow=false">
       <div class="controls" ng-show="!cshow && !controlsGlimpse3d">
