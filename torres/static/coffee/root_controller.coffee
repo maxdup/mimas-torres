@@ -37,7 +37,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
     vanguard: {
       order: 0,
       partial: "static/partials/vanguard.html",
-      mdlurl: 'static/models/hadal.obj',
+      mdlurl: 'static/models/vanguard.obj',
       targetid: 'vanguard3d',
       mdlshow: false,
       workid: 'cp_vanguard',
