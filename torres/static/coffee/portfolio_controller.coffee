@@ -102,24 +102,27 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
     #createHUD()
 
-    material = new THREE.MeshPhongMaterial( { color:0xffffff } )
-
     manager = new THREE.LoadingManager()
-    loader = new THREE.OBJLoader( manager )
-    loader.load($scope.maps[id]['mdlurl'], ( object ) ->
-      object.traverse( ( child ) ->
-        if ( child instanceof THREE.Mesh )
-          child.material = material
-          child.castShadow = true
-          child.receiveShadow = true
+    mtlloader = new THREE.MTLLoader()
+    mtlloader.load($scope.maps[id]['mtlurl'], (materials) ->
+      materials.preload()
 
-      )
-      object.scale.set(0.1, 0.1, 0.1)
-      object.position.y = - 95
+      loader = new THREE.OBJLoader( manager )
+      loader.setMaterials(materials)
+      loader.load($scope.maps[id]['mdlurl'], ( object ) ->
+        object.traverse( ( child ) ->
+          if ( child instanceof THREE.Mesh )
+            child.castShadow = true
+            child.receiveShadow = true
 
-      scene.add( object )
-      $scope.$broadcast('mdlloaded'))
+        )
+        console.log(materials)
+        object.scale.set(0.1, 0.1, 0.1)
+        object.position.y = - 95
 
+        scene.add( object )
+        $scope.$broadcast('mdlloaded'))
+    )
 
     renderer = new THREE.WebGLRenderer( { antialias: true } )
     renderer.setClearColor( scene.fog.color )
