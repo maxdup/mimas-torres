@@ -116,7 +116,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
             child.receiveShadow = true
 
         )
-        console.log(materials)
         object.scale.set(0.1, 0.1, 0.1)
         object.position.y = - 95
 
@@ -142,6 +141,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
     controls = new THREE.OrbitControls( camera, renderer.domElement )
     controls.enableDamping = true
+    controls.rotateSpeed = 0.1
     controls.dampingFactor = 0.1
     controls.enableZoom = true
 
