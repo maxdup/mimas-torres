@@ -76,6 +76,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
       order: 1,
       partial: "static/partials/occult.html",
       mdlurl: 'static/models/occult.obj',
+      mtlurl: 'static/models/occult.mtl',
       targetid: 'occult3d',
       mdlshow: false,
       workid: "468770640",
