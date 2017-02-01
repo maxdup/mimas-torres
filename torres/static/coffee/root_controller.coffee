@@ -57,6 +57,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
       order: 2,
       partial: "static/partials/hadal.html",
       mdlurl: 'static/models/hadal.obj',
+      mtlurl: 'static/models/hadal.mtl',
       targetid: 'hadal3d',
       mdlshow: false,
       workid: "804251853",
