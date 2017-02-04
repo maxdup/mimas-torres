@@ -191,7 +191,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
 
-    camera = new THREE.OrthographicCamera(SCREEN_WIDTH / - 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_HEIGHT / - 2, - 500, 1000)
+    camera = new THREE.OrthographicCamera(SCREEN_WIDTH / - 2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_HEIGHT / - 2, - 500, 1200)
     camera.target = new THREE.Vector3( 0, 0, 0 )
     camera.position.x = -300
     camera.position.y = 300
