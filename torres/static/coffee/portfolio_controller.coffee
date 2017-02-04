@@ -63,6 +63,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   camera = null
   controls = null
   scene = null
+  scene2 = null
   renderer = null
   material = null
   light = null
@@ -81,7 +82,8 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     SCREEN_HEIGHT = container.offsetHeight
 
     scene = new THREE.Scene()
-    scene.fog = new THREE.FogExp2( 0x444444, 2 )
+    scene2 = new THREE.Scene()
+    scene.fog = new THREE.FogExp2( 0x444444, 1.5 )
 
     ambient = new THREE.AmbientLight( 0x555555 )
     scene.add( ambient )
@@ -108,6 +110,8 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
       materials.preload()
 
       loader = new THREE.OBJLoader( manager )
+      textureLoader = new THREE.TextureLoader()
+
       loader.setMaterials(materials)
       loader.load($scope.maps[id]['mdlurl'], ( object ) ->
         object.traverse( ( child ) ->
@@ -120,6 +124,39 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
         object.position.y = - 95
 
         scene.add( object )
+        sprite2 = null
+        geometry = new THREE.Geometry()
+        sprites = textureLoader.load("static/images/spritesheet.png")
+        sprites.offset.x = 0.25
+        sprites.offset.y = 0.50
+        sprites.repeat.x = 0.25
+        sprites.repeat.y = 0.25
+        sprite_shade = new THREE.PointsMaterial( {
+          size: 35
+          map: sprites
+          blending: THREE.NormalBlending
+          sizeAttenuation: false
+          transparent: true
+          opacity: 0.1
+          depthTest: false
+          })
+        sprite_solid = new THREE.PointsMaterial( {
+          size: 35
+          map: sprites
+          blending: THREE.NormalBlending
+          sizeAttenuation: false
+          transparent: true
+          })
+
+        vert = new THREE.Vector3()
+        vert.y = -85
+        geometry.vertices.push(vert)
+        particle = new THREE.Points( geometry, sprite_solid )
+        scene2.add(particle)
+        particle = new THREE.Points( geometry, sprite_shade )
+        scene2.add(particle)
+
+
         $scope.$broadcast('mdlloaded'))
     )
 
@@ -159,6 +196,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     controls.update()
     renderer.clear()
     renderer.render( scene, camera )
+    renderer.render( scene2, camera )
 
     if ( showHUD )
       lightShadowMapViewer.render( renderer )
