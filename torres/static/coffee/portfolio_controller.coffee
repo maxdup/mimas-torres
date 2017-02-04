@@ -76,7 +76,8 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   showHUD = false
 
   $scope.$on 'init3d', (event, id) ->
-    container = document.getElementById($scope.maps[id]['targetid'])
+    map = $scope.maps[id]
+    container = document.getElementById(map['targetid'])
 
     SCREEN_WIDTH = container.offsetWidth
     SCREEN_HEIGHT = container.offsetHeight
@@ -106,14 +107,14 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
     manager = new THREE.LoadingManager()
     mtlloader = new THREE.MTLLoader()
-    mtlloader.load($scope.maps[id]['mtlurl'], (materials) ->
+    mtlloader.load(map['mtlurl'], (materials) ->
       materials.preload()
 
       loader = new THREE.OBJLoader( manager )
       textureLoader = new THREE.TextureLoader()
 
       loader.setMaterials(materials)
-      loader.load($scope.maps[id]['mdlurl'], ( object ) ->
+      loader.load(map['mdlurl'], ( object ) ->
         object.traverse( ( child ) ->
           if ( child instanceof THREE.Mesh )
             child.castShadow = true
@@ -124,38 +125,60 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
         object.position.y = - 95
 
         scene.add( object )
-        sprite2 = null
-        geometry = new THREE.Geometry()
-        sprites = textureLoader.load("static/images/spritesheet.png")
-        sprites.offset.x = 0.25
-        sprites.offset.y = 0.50
-        sprites.repeat.x = 0.25
-        sprites.repeat.y = 0.25
-        sprite_shade = new THREE.PointsMaterial( {
-          size: 35
-          map: sprites
-          blending: THREE.NormalBlending
-          sizeAttenuation: false
-          transparent: true
-          opacity: 0.1
-          depthTest: false
-          })
-        sprite_solid = new THREE.PointsMaterial( {
-          size: 35
-          map: sprites
-          blending: THREE.NormalBlending
-          sizeAttenuation: false
-          transparent: true
-          })
+        materials_blueprint = [
+          # tag, offsetX, offsetY, UVscale, size, world offset
+          ["ca", 0, 0.75, 0.25, 35, -90],
+          ["cb", 0, 0.5, 0.2, 35, -90],
+          ["cc", 0, 0.25, 0.25, 35, -90],
+          ["cd", 0, 0, 0.25, 35, -90],
+          ["cr", 0.25, 0.75, 0.25, 35, -90],
+          ["cb", 0.25, 0.25, 0.25, 35, -90],
+          ["cn", 0.25, 0.5, 0.25, 35, -90],
+          ["pa", 0.25, 0.125, 0.125, 15, -90],
+          ["ph", 0.375, 0.125, 0.125, 15, -90],
+          ["rb", 0.5, 0, 0.5, 45, -30],
+          ["rr", 0.5, 0.5, 0.5, 45, -30],
+        ]
+        materials = {}
 
-        vert = new THREE.Vector3()
-        vert.y = -85
-        geometry.vertices.push(vert)
-        particle = new THREE.Points( geometry, sprite_solid )
-        scene2.add(particle)
-        particle = new THREE.Points( geometry, sprite_shade )
-        scene2.add(particle)
+        textureLoader.load("static/images/spritesheet.png", (texture) ->
+          for mat in materials_blueprint
+            sprite = texture.clone()
+            sprite.needsUpdate = true
+            sprite.offset.x = mat[1]
+            sprite.offset.y = mat[2]
+            sprite.repeat.x = mat[3]
+            sprite.repeat.y = mat[3]
+            sprite_shade = new THREE.PointsMaterial( {
+              size: mat[4],
+              map: sprite
+              blending: THREE.NormalBlending
+              sizeAttenuation: false
+              transparent: true
+              opacity: 0.1
+              depthTest: false
+            })
+            sprite_solid = new THREE.PointsMaterial( {
+              size: mat[4]
+              map: sprite
+              blending: THREE.NormalBlending
+              sizeAttenuation: false
+              transparent: true
+            })
+            materials[mat[0]] = [sprite_shade, sprite_solid, mat[5]]
 
+          for ent in map['mdlents']
+            geometry = new THREE.Geometry()
+            vert = new THREE.Vector3(ent[1]*-1,ent[3],ent[2])
+            geometry.vertices.push(vert)
+            geometry.scale(0.1, 0.1, 0.1)
+            geometry.translate(0, materials[ent[0]][2], 0)
+
+            particle = new THREE.Points( geometry, materials[ent[0]][0] )
+            scene2.add(particle)
+            particle = new THREE.Points( geometry, materials[ent[0]][1] )
+            scene2.add(particle)
+        )
 
         $scope.$broadcast('mdlloaded'))
     )
