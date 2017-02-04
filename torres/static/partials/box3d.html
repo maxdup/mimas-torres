@@ -1,7 +1,7 @@
 <div class="box box-wrap">
   <div id="{{maps[map]['targetid']}}"
        class="box-3d" ng-class="{'box-click': !maps[map]['mdlshow']}">
-    <div ng-if="!maps[map]['mdlshow']" ng-click="openmodel()">
+    <div class="fill" ng-if="!maps[map]['mdlshow']" ng-click="openmodel()">
       <img align="center" src="static/images/icons-3d.png" class="icon"></img>
     </div>
     <span class="glyphicon glyphicon-remove close"

@@ -9,13 +9,13 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-
   <div class="lang">
-    <a ng-class="{active: active_lang == 'en'}" ng-click="translate('en')">En</a>&nbsp|&nbsp
+    <a ng-class="{active: active_lang == 'en'}" ng-click="translate('en')">En</a>&nbsp|
     <a ng-class="{active: active_lang == 'fr'}" ng-click="translate('fr')">Fr</a>
   </div>
 
   <div class="navbar-collapse" uib-collapse="$parent.isNavCollapsed">
+
     <ul class="nav navbar-nav">
       <li>
         <span class="navbar-sep"> | </span>
@@ -36,6 +36,10 @@
         <span class="navbar-sep"> | </span>
         <a href="#/contact" ng-class="{ active: isActive('/contact')}">
           {{'nav-contact' | translate}}</a>
+      </li>
+      <li class="lang-collapse">
+        <a ng-class="{active: active_lang == 'en'}" ng-click="translate('en')">En</a>&nbsp|
+        <a ng-class="{active: active_lang == 'fr'}" ng-click="translate('fr')">Fr</a>
       </li>
     </ul>
   </div>
