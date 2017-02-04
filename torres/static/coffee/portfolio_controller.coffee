@@ -152,7 +152,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
             sprite_shade = new THREE.PointsMaterial( {
               size: mat[4],
               map: sprite
-              blending: THREE.NormalBlending
               sizeAttenuation: false
               transparent: true
               opacity: 0.1
@@ -161,7 +160,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
             sprite_solid = new THREE.PointsMaterial( {
               size: mat[4]
               map: sprite
-              blending: THREE.NormalBlending
               sizeAttenuation: false
               transparent: true
             })
@@ -169,12 +167,12 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
 
           for ent in map['mdlents']
             geometry = new THREE.Geometry()
-            vert = new THREE.Vector3(ent[1]*-1,ent[3],ent[2])
+            vert = new THREE.Vector3(ent[1],ent[3],ent[2]*-1)
             geometry.vertices.push(vert)
             geometry.scale(0.1, 0.1, 0.1)
             geometry.translate(0, materials[ent[0]][2], 0)
 
-            particle = new THREE.Points( geometry, materials[ent[0]][0] )
+            particle = new THREE.Points( geometry, materials[ent[0]][1] )
             scene2.add(particle)
             particle = new THREE.Points( geometry, materials[ent[0]][1] )
             scene2.add(particle)
