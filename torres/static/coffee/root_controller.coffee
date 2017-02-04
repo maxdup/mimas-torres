@@ -39,6 +39,15 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
       partial: "static/partials/vanguard.html",
       mdlurl: 'static/models/vanguard.obj',
       mtlurl: 'static/models/vanguard.mtl',
+      mdlents: [
+        ['cn', 0, 0, 103]
+        ['cr', 1936, -400, 324]
+        ['cr', 4096, -1216, 319]
+        ['cb', -1936, 400, 324]
+        ['cb', -4096, 1216, 319]
+        ['rr', 5300, -950, 310]
+        ['rb', -5300, 950, 310]
+      ]
       targetid: 'vanguard3d',
       mdlshow: false,
       workid: 'cp_vanguard',

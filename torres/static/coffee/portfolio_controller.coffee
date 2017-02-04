@@ -127,10 +127,10 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
         scene.add( object )
         materials_blueprint = [
           # tag, offsetX, offsetY, UVscale, size, world offset
-          ["ca", 0, 0.75, 0.25, 35, -90],
-          ["cb", 0, 0.5, 0.2, 35, -90],
-          ["cc", 0, 0.25, 0.25, 35, -90],
-          ["cd", 0, 0, 0.25, 35, -90],
+          ["c1", 0, 0.75, 0.25, 35, -90],
+          ["c2", 0, 0.5, 0.25, 35, -90],
+          ["c3", 0, 0.25, 0.25, 35, -90],
+          ["c4", 0, 0, 0.25, 35, -90],
           ["cr", 0.25, 0.75, 0.25, 35, -90],
           ["cb", 0.25, 0.25, 0.25, 35, -90],
           ["cn", 0.25, 0.5, 0.25, 35, -90],
