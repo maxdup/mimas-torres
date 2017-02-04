@@ -161,6 +161,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
               size: mat[4]
               map: sprite
               sizeAttenuation: false
+              alphaTest: 0.1
               transparent: true
             })
             materials[mat[0]] = [sprite_shade, sprite_solid, mat[5]]
@@ -172,7 +173,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
             geometry.scale(0.1, 0.1, 0.1)
             geometry.translate(0, materials[ent[0]][2], 0)
 
-            particle = new THREE.Points( geometry, materials[ent[0]][1] )
+            particle = new THREE.Points( geometry, materials[ent[0]][0] )
             scene2.add(particle)
             particle = new THREE.Points( geometry, materials[ent[0]][1] )
             scene2.add(particle)
