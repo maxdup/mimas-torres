@@ -24,7 +24,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   $('.box-photo').imagefill({runOnce:true});
 
   $(".content").mousewheel((event, delta) ->
-    this.scrollLeft -= (delta * 10)
+    this.scrollLeft -= (delta * 60)
     event.preventDefault())
 
   $scope.viewimagemodal = (image='') ->
