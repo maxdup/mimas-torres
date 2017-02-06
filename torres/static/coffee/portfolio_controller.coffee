@@ -8,9 +8,15 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     $('.boxes').isotope
       layoutMode: 'masonryHorizontal',
       itemSelector: '.box',
+      getSortData:
+        order: '[important] parseInt'
+      sortBy : 'order',
       masonryHorizontal: rowHeight: 200
+    .isotope('updateSortData').isotope()
     return
   $scope.layout()
+
+
 
   $scope.reload = ->
     $('.boxes').isotope('reloadItems')

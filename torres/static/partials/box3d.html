@@ -1,4 +1,4 @@
-<div class="box box-wrap">
+<div class="box box-wrap" important="{{maps[map]['mdlshow'] ? 1 : 2}}">
   <div id="{{maps[map]['targetid']}}"
        class="box-3d" ng-class="{'box-click': !maps[map]['mdlshow']}">
     <div class="fill" ng-if="!maps[map]['mdlshow']" ng-click="openmodel()">
