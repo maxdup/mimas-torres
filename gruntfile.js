@@ -96,7 +96,7 @@ module.exports = function(grunt){
       target: {
         files: {
           'torres/static/css/main.min.css': [
-            'torres/static/bower_components/reset-css/reset.css" rel="stylesheet',
+            'torres/static/bower_components/reset-css/reset.css',
             'torres/static/bower_components/bootstrap/dist/css/bootstrap.min.css',
             'torres/static/css/main.css'
           ]
@@ -121,7 +121,7 @@ module.exports = function(grunt){
       },
       less: {
         files: ['**/*.less'],
-        tasks: ['less', 'concat:css'],
+        tasks: ['less', 'cssmin'],
       }
     }
   });

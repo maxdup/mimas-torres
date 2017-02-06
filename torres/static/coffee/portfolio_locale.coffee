@@ -16,8 +16,8 @@ app.config(['$translateProvider', ($translateProvider) ->
     'instructions': 'Instructions'
     'install-1': 'Install and log into the Steam client'
     'install-2': 'Install Team Fortress 2 (free to play)'
-    'install-3': 'Install The map by subscribing on the workshop'
-    'install-3-warn': 'It\'s only to make sure the link opens in the steam client.'
+    'install-3': 'Get the map by subscribing on the workshop'
+    'install-3-warn': "It's only to make sure the link opens in the steam client."
     'install-3-alt': '-Alternatively, subscribe'
     'install-3-alt2': 'from your bowser.'
     'install-4': 'Load the map ingame'

@@ -16,8 +16,6 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
     return
   $scope.layout()
 
-
-
   $scope.reload = ->
     $('.boxes').isotope('reloadItems')
     $scope.layout()
@@ -27,11 +25,7 @@ angular.module('folio.Controllers', ['ui.bootstrap', 'angularModalService'])
   $scope.$on 'isotopeLayout', (event, next, current) ->
     $scope.layout()
 
-  $('.box-photo').imagefill({runOnce:true});
-
-  $(".content").mousewheel((event, delta) ->
-    this.scrollLeft -= (delta * 60)
-    event.preventDefault())
+  $('.box-photo').imagefill({runOnce:true})
 
   $scope.viewimagemodal = (image='') ->
     ModalService.showModal({

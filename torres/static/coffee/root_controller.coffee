@@ -12,6 +12,10 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
   else
     $scope.active_lang = $translate.use()
 
+  $(".content").mousewheel((event, delta) ->
+    this.scrollLeft -= (delta * 60)
+    event.preventDefault())
+
   camera = null
   scene = null
   renderer = null
