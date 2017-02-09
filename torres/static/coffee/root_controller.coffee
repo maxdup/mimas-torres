@@ -188,7 +188,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
         { image: 'static/images/occult/koth_occult_rc43.jpg', id: 3},
         { image: 'static/images/occult/koth_occult_rc44.jpg', id: 4},
       ],
-      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+      panorama: 'static/images/occult/koth_occult360.jpg',
     },
     effigy: {
       order: 3,
@@ -203,7 +203,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
         { image: 'static/images/effigy/pl_effigy_rc23.jpg', id: 3},
         { image: 'static/images/effigy/pl_effigy_rc24.jpg', id: 4},
       ],
-      panorama: 'static/images/vanguard/cp_vanguard360.jpg',
+      panorama: 'static/images/effigy/pl_effigy360.jpg',
     }
   }
 
