@@ -1,7 +1,7 @@
 app = angular.module('folioApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngAnimate', 'folio.rootController', 'folio.Controllers', 'folio.Locale', 'ui.bootstrap'])
-app.config ($routeProvider, $httpProvider) ->
+app.config ($routeProvider, $httpProvider, $locationProvider) ->
   $routeProvider
-  .when '/home',
+  .when '/',
     controller: 'FolioController'
     templateUrl: 'static/partials/folio.html'
   .when '/commercial',
@@ -17,4 +17,7 @@ app.config ($routeProvider, $httpProvider) ->
     controller: 'FolioController'
     templateUrl: 'static/partials/contact.html'
   .otherwise
-    redirectTo: '/home'
+    redirectTo: '/'
+
+  $locationProvider
+  .html5Mode(true)
