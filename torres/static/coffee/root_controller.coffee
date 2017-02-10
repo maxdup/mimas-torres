@@ -262,7 +262,7 @@ angular.module('folio.rootController', ['ui.bootstrap', 'ngCookies'])
       event.preventDefault()
 
   $scope.isActive = (viewLocation) ->
-    $location.path().startsWith(viewLocation)
+    $location.path().indexOf(viewLocation) == 0
 
   $scope.init = ->
 
