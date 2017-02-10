@@ -1,5 +1,5 @@
 app = angular.module('folioApp', ['ngRoute', 'ngCookies', 'ngResource', 'ngAnimate', 'folio.rootController', 'folio.Controllers', 'folio.Locale', 'ui.bootstrap'])
-app.config ($routeProvider, $httpProvider, $locationProvider) ->
+app.config ($routeProvider, $locationProvider, $compileProvider) ->
   $routeProvider
   .when '/',
     controller: 'FolioController'
@@ -19,5 +19,6 @@ app.config ($routeProvider, $httpProvider, $locationProvider) ->
   .otherwise
     redirectTo: '/'
 
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|steam):/)
   $locationProvider
   .html5Mode(true)
