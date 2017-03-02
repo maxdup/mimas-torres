@@ -28,7 +28,7 @@
 
         </li>
         <li>
-          <a href="steam://run/440//+map%20workshop%2f{{maps[map]['workid']}}" target="_blank">
+          <a href="steam://run/440//+map%20{{maps[map]['level']==0 ? 'workshop%2f':''}}{{maps[map]['workid']}}" target="_blank">
             {{'install-4' | translate}}</a>
           <span class="glyphicon glyphicon glyphicon-exclamation-sign"
                 uib-popover-template="'poptemplate4.html'" popover-title="Notes"
