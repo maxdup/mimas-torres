@@ -8,3 +8,8 @@ js/
 *.pyc
 *.css
 fonts/
+
+
+toggle-invoice/config.py
+toggle-invoice/invoices/*
+toggle-invoice/*csv
