@@ -140,7 +140,7 @@ clients = {}
 for k, v in CLIENTS.items():
     clients[k] = Client(**v)
 
-with open(sys.argv[1]) as csv_file:
+with open(sys.argv[1], "r", encoding='utf-8-sig') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     columns = []
     items = []
