@@ -9,6 +9,7 @@ js/
 *.css
 fonts/
 
+npm-debug*
 
 toggle-invoice/config.py
 toggle-invoice/invoices/*
